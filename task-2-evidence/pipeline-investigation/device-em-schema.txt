@@ -1,0 +1,8 @@
+Table: device_em.stats
+Columns: ts timestamptz, channel smallint, val real, phase varchar(1), device integer, tag varchar(30), domain varchar(16), classifier_source varchar(16), source varchar(16)
+Indexes:
+- device_em__stats_dedup (device, tag, domain, phase, channel, ts)
+- device_em__stats_device (device)
+- device_em__stats_device_tag_ts (device, tag, ts DESC)
+- stats_ts_idx (ts DESC)
+Type: TimescaleDB hypertable with daily chunks

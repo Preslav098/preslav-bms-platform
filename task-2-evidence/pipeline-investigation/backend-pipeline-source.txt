@@ -1,0 +1,12 @@
+Relevant backend modules identified:
+- dist/modules/ShellyEmHandler.js
+- dist/modules/energyCapture.js
+- dist/modules/emStatsQueue.js
+- dist/modules/device/emSyncStream.js
+- dist/modules/device/emSyncCoalescer.js
+- dist/modules/device/EmSyncDrainer.js
+
+Observed logic:
+- energyCapture normalizes/classifies energy fields and enqueues rows;
+- emStatsQueue stores batch arrays for device, tag, domain, phase, channel, timestamp and value;
+- a later drain/append path persists the batch to device_em.stats.

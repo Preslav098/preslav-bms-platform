@@ -1,0 +1,9 @@
+Verified in boiled.data.json:
+- root template: shellypro3em-3ce90e701bc0
+- model: SPEM-003CEBEU
+- app: Pro3EM
+- NotifyFullStatus present
+- repeated NotifyStatus present
+- em:0 present
+- emdata:0 present
+- current, voltage, active power and cumulative energy fields present

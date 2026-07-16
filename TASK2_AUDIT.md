@@ -1,148 +1,173 @@
-# Task 2 – Backend Audit Report
+# Task 2 – Fleet Manager Backend Audit
 
 ## Methodology
 
-### Test environment
+The supplied `fleet-manager-stress-test` tool was used with the provided Shelly Pro 3EM template (`boiled.data.json`) against a full Fleet Manager stack consisting of Fleet Manager, PostgreSQL/TimescaleDB, Redis, Traefik and Zitadel.
 
-- Fleet Manager (official Docker image)
-- TimescaleDB + PostgreSQL
-- Redis
-- Traefik
-- Stress-test simulator using simulated Shelly Pro 3EM devices
-- WebSocket device endpoint
-- 10-minute ramp-up to 5,000 concurrent devices
-- 10-second telemetry interval
+The load was ramped from 0 to 5,000 simulated devices over 10 minutes. Measurements included:
 
-### Measurements collected
+- active, admitted, waiting and connecting devices;
+- handshake failures, drops, timeouts and reconnects;
+- established WebSocket/TCP connections;
+- Fleet Manager and database CPU/memory;
+- PostgreSQL connection state;
+- Waiting Room and ingress logs;
+- TimescaleDB hypertable/chunk metadata;
+- latest EM timestamps, recent-row counts and WAL position;
+- relevant backend source paths for the EM ingestion pipeline.
 
-The following metrics were collected during the benchmark:
+The laptop is not the 4-vCPU reference machine, so absolute capacity figures are not treated as directly transferable. The conclusions focus on reproduced bottlenecks and scaling behavior.
 
-- Number of active/admitted devices
-- Waiting Room state
-- Docker CPU and memory usage
-- PostgreSQL connection usage
-- Established WebSocket connections
-- Stress-test statistics (drops, timeouts, reconnects, failures)
-- Backend logs
+## Measurements
 
----
+### Before tuning
 
-# Measurements
+Three reproducible blockers appeared during ramp-up:
 
-## Final steady-state
+1. **PostgreSQL connection exhaustion** – logs reported `sorry, too many clients already`.
+2. **Waiting Room capacity** – the default 2,000-device pending limit caused eviction during mass onboarding.
+3. **Ingress handshake throttling** – large connection bursts produced `rate_limit_exceeded`.
+
+At an intermediate point with 5,560 approved and 3,637 reporting devices:
+
+- Fleet Manager: approximately 18.5% CPU and 959 MiB RAM;
+- PostgreSQL: approximately 11% CPU and 538 MiB RAM.
+
+The host still had CPU and memory headroom, while configuration and connection limits were already failing.
+
+### Applied benchmark tuning
+
+```env
+FM_DB_POOL_MAX=25
+FM_DEVICE_INGEST_LANES=64
+
+FM_WAITING_ROOM_MAX=10000
+FM_WAITING_ROOM_MAX_PER_ORG=10000
+FM_WAITING_ROOM_ACCEPT_CHUNK_SIZE=1000
+FM_WAITING_ROOM_ACCEPT_CONCURRENCY=32
+
+FM_DEVICE_INGRESS_HANDSHAKES_PER_IP_PER_MINUTE=10000
+FM_DEVICE_INGRESS_HANDSHAKES_PER_ORG_PER_MINUTE=10000
+FM_DEVICE_INGRESS_HANDSHAKES_PER_IDENTITY_PER_MINUTE=10000
+FM_DEVICE_INGRESS_MAX_CONNECTIONS_PER_IP=6000
+FM_DEVICE_INGRESS_MAX_CONNECTIONS_PER_ORG=6000
+```
+
+The ingress values above are benchmark settings, not unconditional production defaults.
+
+### Final 5,000-device connection run
 
 | Metric | Result |
-|--------|-------:|
-| Active devices | 5000 |
-| Admitted devices | 5000 |
-| Waiting devices | 0 |
-| Connecting devices | 0 |
-| Connection failures | 0 |
-| Drops | 0 |
-| Timeouts | 0 |
-| Reconnect storms | 0 |
-| Established TCP/WebSocket connections | 5002 |
-| PostgreSQL connections | 17 total (1 active, 7 idle) |
-| Fleet Manager CPU | ~12.6% |
-| Fleet Manager RAM | ~467 MB |
-| Database CPU | ~7.4% |
-| Database RAM | ~137 MB |
+|---|---:|
+| Active devices | 5,000 |
+| Admitted devices | 5,000 |
+| Waiting / connecting | 0 / 0 |
+| Established sockets on port 7011 | 5,002 |
+| Failures | 0 |
+| Drops / timeouts / reconnects | 0 / 0 / 0 |
+| Steady-state unsolicited messages | ~500/s |
+| Fleet Manager CPU / RAM | 12.56% / 467.4 MiB |
+| PostgreSQL CPU / RAM | 7.39% / 137.4 MiB |
+| PostgreSQL connections | 17 total, 1 active, 7 idle, 0 idle-in-transaction |
 
-The system remained stable for more than 10 minutes after reaching 5,000 concurrent devices.
+The simulator remained stable for more than ten minutes after reaching 5,000 active devices.
 
----
+## EM persistence investigation
 
-# Findings
+The supplied template contains `NotifyFullStatus`, repeated `NotifyStatus`, `em:0`, `emdata:0`, power/current/voltage fields and Pro 3EM model metadata. Fleet Manager logs confirmed that simulated devices were recognized and that `em:0` and `emdata:0` entities were created.
 
-The initial benchmark exposed three main bottlenecks.
+The persistence path was traced to these backend modules:
 
-### 1. Waiting Room capacity
-
-The default Waiting Room configuration became a bottleneck during mass device onboarding. Devices were evicted once the configured capacity was reached.
-
-### 2. PostgreSQL connection exhaustion
-
-During earlier tests PostgreSQL reached its connection limit, resulting in:
-
-```
-FATAL: sorry, too many clients already
+```text
+NotifyStatus / EMData.GetData
+        ↓
+ShellyEmHandler
+        ↓
+energyCapture
+        ↓
+emStatsQueue
+        ↓
+EM sync / drainer path
+        ↓
+device_em.stats
 ```
 
-### 3. Device ingress rate limiting
+`device_em.stats` is a TimescaleDB hypertable with daily chunks and indexes for device, tag and timestamp access.
 
-Large bursts of simultaneous WebSocket handshakes triggered:
+Observed database state during the final test:
 
-```
-rate_limit_exceeded
-```
+| Check | Result |
+|---|---|
+| Latest `device_em.stats.ts` | 2026-07-16 07:34:00 UTC |
+| Rows in previous 5 minutes | 0 |
+| Distinct devices in previous 5 minutes | 0 |
+| 60-second `device_em.stats` count delta | 0 |
+| 60-second WAL LSN change | none |
 
-preventing additional devices from connecting.
+Therefore the benchmark **proves 5,000 concurrent admitted Pro 3EM WebSocket sessions and stable ingress**, but it does **not prove sustained 5,000-device historical EM persistence**. The evidence shows that the expected components and code path exist, while no new rows reached `device_em.stats` during the observed window. The exact gating condition still requires a focused write-producing test.
 
-After tuning the backend configuration all three bottlenecks were eliminated.
+## Findings
 
-The final benchmark completed with:
+### 1. PostgreSQL connection budgeting was the highest-impact production fix
 
-- 5000 active devices
-- 5000 admitted devices
-- zero waiting devices
-- zero connection failures
+The application connection budget could exhaust PostgreSQL before CPU or RAM became limiting. Reducing `FM_DB_POOL_MAX` to 25 removed the reproduced `too many clients` failure. At 5,000 active sessions the database used only 17 connections.
 
----
+### 2. Waiting Room and handshake limits were onboarding bottlenecks
 
-# Prioritized recommendations
+The default limits prevented a large burst from reaching steady state. Raising them enabled the benchmark, but these settings primarily affect onboarding and reconnect bursts rather than steady-state database write capacity.
 
-| Recommendation | Expected impact | Rollout risk |
-|---------------|-----------------|--------------|
-| Increase Waiting Room capacity for large deployments | Prevents device eviction during mass onboarding | Low |
-| Tune ingress handshake and connection limits | Prevents connection throttling during bursts | Low |
-| Tune PostgreSQL connection pool | Prevents database connection exhaustion | Medium |
-| Increase ingest worker parallelism | Improves telemetry ingestion throughput | Medium |
-| Monitor CPU, RAM and database metrics continuously | Detects capacity limits before service degradation | Low |
+### 3. Node/WebSocket ingress was not the final bottleneck
 
----
+At 5,000 active sessions Fleet Manager remained below 13% sampled CPU and below 500 MiB RAM. No failures, drops, timeouts or reconnect storms occurred.
 
-# 5,000+ Device Extrapolation
+### 4. Sustained EM write capacity remains the unresolved capacity question
 
-The benchmark demonstrates that the tested deployment can successfully sustain **5,000 simultaneous connected devices** without connection failures.
+The assignment correctly identifies the database path as the likely long-term limit. Since no fresh EM rows or WAL growth were observed, index cost, chunk growth, write amplification, checkpoint pressure and retention/compression behavior are not yet proven at 5,000 continuously writing devices.
 
-Resource utilization remained moderate throughout the benchmark, suggesting additional headroom.
+## Prioritized recommendations
 
-However, scaling beyond 5,000 devices should be validated with additional benchmarks because the workload characteristics may change significantly.
+| Priority | Recommendation | What to change | Expected impact | Rollout risk |
+|---:|---|---|---|---|
+| 1 | Enforce a database connection budget | Start with `FM_DB_POOL_MAX=25`; reserve PostgreSQL headroom for migrations, admin access and supporting services | Prevents client exhaustion and stabilizes mixed ingest/query load | **Medium** – an undersized pool can add queueing; monitor pool wait and query latency |
+| 2 | Run a write-producing EM benchmark before further tuning | Confirm that each simulated device produces fresh EM timestamps; then capture WAL bytes/s, chunk growth, rows/s, `pg_stat_statements`, checkpoints and disk latency | Identifies the actual database ceiling instead of optimizing the wrong layer | **Low** – measurement-only |
+| 3 | Size Waiting Room for expected onboarding bursts | Raise per-org/global capacity only to the intended operational fleet/burst size | Prevents eviction during bulk onboarding | **Low–Medium** – higher memory use and larger abuse surface |
+| 4 | Tune ingress limits from measured reconnect behavior | Keep production limits substantially below benchmark values and raise them only with monitoring and abuse controls | Removes false-positive throttling during legitimate reconnect waves | **Medium** – excessive limits weaken protection |
+| 5 | Review TimescaleDB layout after a valid write run | Measure the cost of the four visible indexes, chunk interval, compression and retention; remove or alter only what measurements justify | Can reduce write amplification and storage pressure | **High** – index/chunk/policy changes affect live workloads and queries |
 
-Recommended future benchmarks include:
+## Rollout order
 
-- 10,000 concurrent devices
-- Higher telemetry frequencies
-- Multiple organizations
-- Reconnect storms
-- Long-duration endurance tests
+1. Apply and monitor the connection-pool budget.
+2. Validate a small write-producing fleet (for example 100 devices).
+3. Scale the same telemetry pattern to 1,000, 3,000 and 5,000.
+4. Record rows/s, WAL bytes/s, disk latency, checkpoints, query latency and chunk/index growth at each step.
+5. Change TimescaleDB indexes, chunking, compression or retention only after the measurements identify a specific cost.
+6. Re-run reconnect and endurance tests after every database change.
 
----
+## 5,000+ extrapolation
 
-# What I Would Look At Next
+The connection test demonstrates that one Fleet Manager process on this machine can hold at least 5,000 concurrent Pro 3EM-class sessions with substantial CPU and memory headroom.
 
-The next optimization areas would be:
+That result cannot be linearly extrapolated to 5,000 continuously writing meters because the final observation window did not produce new `device_em.stats` rows. For the reference 4-vCPU VM, the credible path to 5,000+ is:
 
-1. PostgreSQL write throughput under sustained telemetry.
-2. TimescaleDB chunk sizing and compression.
-3. Redis utilization during reconnect storms.
-4. WebSocket latency under higher message rates.
-5. Horizontal scaling with multiple Fleet Manager instances.
-6. Load balancing and high availability.
+- retain the corrected connection budget;
+- validate real EM rows per second at increasing fleet sizes;
+- measure WAL and storage latency rather than relying on container CPU alone;
+- optimize only the confirmed database hot path;
+- use a long-duration run to detect checkpoint, retention, compression and query-interference effects.
 
----
+## What I would look at next
 
-# Conclusion
+1. Why fresh simulated `NotifyStatus` / `EMData.GetData` data did not advance `device_em.stats`.
+2. `pg_stat_statements` top insert/update/query costs during a valid write run.
+3. WAL bytes per EM device per minute and checkpoint frequency.
+4. Per-index growth and write amplification on `device_em.stats`.
+5. TimescaleDB chunk interval, compression scheduling and retention impact.
+6. Disk latency and queue depth during sustained ingest plus dashboard/report queries.
+7. A 6–24 hour endurance test and a controlled reconnect storm.
+8. Horizontal scaling only after the single-instance database ceiling is measured.
 
-The benchmark successfully validated Fleet Manager under a simulated load of **5,000 concurrent Shelly devices**.
+## Conclusion
 
-After tuning Waiting Room limits, ingress rate limits, PostgreSQL connection usage and ingestion settings, the system maintained:
+The audit reproduced and removed three real blockers: PostgreSQL client exhaustion, Waiting Room capacity and ingress throttling. After tuning, Fleet Manager sustained 5,000 admitted simulated Pro 3EM sessions with zero failures and moderate resource usage.
 
-- 5,000 active devices
-- 5,000 admitted devices
-- 0 waiting devices
-- 0 connection failures
-- 0 drops
-- stable resource utilization
-
-The collected measurements indicate that the platform is stable for the tested workload and provides a solid baseline for future scalability testing beyond 5,000 devices.
+The audit does not overstate the result: sustained historical EM persistence at 5,000 devices remains unproven because the final database observation showed no fresh EM rows or WAL movement. That unresolved write path is the first item for the next benchmark.

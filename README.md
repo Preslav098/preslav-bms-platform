@@ -1,303 +1,119 @@
 # Preslav BMS
-## Custom Building Management System Template for Shelly Fleet Management
 
----
+A custom Building Management System template for Shelly Fleet Manager. Fleet Manager remains the backend and source of truth; the template replaces the standard UI and communicates exclusively through the Host SDK (`@host`).
 
-## Overview
+## Implemented scope
 
-Preslav BMS is a custom Building Management System (BMS) template developed for the Shelly Fleet Management platform.
+- Facility-manager overview with current power, climate, door/window, online-device and alert KPIs.
+- Live plug power plus 24-hour, 7-day and 30-day energy ranges.
+- Live temperature/humidity and 24-hour climate history.
+- Live door/window state and locally captured real open/close events.
+- Navigable 3D building with floor selection and day/night environment state.
+- Uploadable floor schematics, drag-and-drop device placement, persistent plan/marker positions and state legend.
+- Device list and detail popup with live readings.
+- Real Shelly Plug ON/OFF control through the Host SDK.
+- Building → floor → device navigation, with floors mapped to Fleet Manager groups.
 
-The project replaces the default Fleet Management interface with a modern Building Management dashboard focused on monitoring buildings, floors, devices and environmental conditions while using Fleet Management as the backend and source of truth.
+## Real data and data ownership
 
-The template communicates exclusively through the Fleet Management Host SDK and can be deployed as a standalone Fleet Management template package.
+The final UI contains no generated demo telemetry. Device, group, location, live metric and metric-history data comes from Fleet Manager through the Host SDK. Floor-plan images and marker coordinates are template-owned UI configuration and are persisted in browser storage so they survive reloads.
 
----
+Door/window events displayed by the current template are real state transitions captured while the BMS client is running and retained locally. A production follow-up would persist/query a server-side 24-hour event stream so history is shared across browsers and includes periods when the UI was closed.
 
-# Main Features
+## Repository shape
 
-## Building Overview
-
-The Overview page provides a complete summary of the building.
-
-It includes:
-
-- Current Power Consumption
-- Average Temperature
-- Average Humidity
-- Devices Online
-- Open Doors
-- Active Alerts
-- Device Overview Cards
-
----
-
-## Building Management
-
-- Building information
-- Floor overview
-- Building statistics
-
----
-
-## 3D Building View
-
-Interactive building visualization.
-
-Features:
-
-- Orbit Camera
-- Zoom
-- Auto Rotation
-- Day / Night mode
-- Floor highlighting
-- Floor selection
-
----
-
-## Floor Plans
-
-Interactive floor plans with:
-
-- Upload floor plans
-- Replace existing floor plans
-- Drag & Drop devices
-- Persistent device positions
-- Device markers
-- Floor navigation
-
----
-
-## Device Monitoring
-
-Complete device management.
-
-Includes:
-
-- Device list
-- Search
-- Filters
-- Device status
-- Device popup
-- Live telemetry
-
-Supported devices:
-
-- Shelly Plug
-- Shelly BLU H&T
-- Shelly BLU Door / Window
-
----
-
-## Device Details
-
-Each device contains:
-
-### Shelly Plug
-
-- Live Power
-- Voltage
-- Current
-- Connection Status
-- Device Information
-- ON / OFF control
-
-### Shelly BLU H&T
-
-- Temperature
-- Humidity
-- Battery
-- RSSI
-- Device Information
-
-### Shelly BLU Door
-
-- Door State
-- Battery
-- RSSI
-- Device Information
-
----
-
-## Energy Monitoring
-
-Features:
-
-- Live Power
-- Device Consumption
-- Daily History
-- Weekly History
-- Monthly History
-- Energy Chart
-- Device Power Cards
-
----
-
-## Climate Monitoring
-
-Features:
-
-- Average Temperature
-- Average Humidity
-- Device Statistics
-- 24 Hour History
-- Climate Chart
-
----
-
-## Door & Window Monitoring
-
-Features:
-
-- Live Door State
-- Open Doors
-- Closed Doors
-- Event History
-- Device Status
-
----
-
-## User Interface
-
-Features:
-
-- Dark Theme
-- Responsive Layout
-- Fixed Sidebar
-- Persistent Navigation
-- Profile Dialog
-- Unified Device Popup
-- Modern KPI Cards
-
----
-
-# Technologies
-
-- Vue 3
-- TypeScript
-- Host SDK
-- CSS
-- Vite
-- Shelly Fleet Management
-
----
-
-# Project Structure
-
-```
+```text
 contracts/
-
 templates/
-└── preslav-bms
-    ├── components
-    ├── composables
-    ├── models
-    ├── services
-    ├── styles
-    ├── utils
-    ├── manifest.ts
-    └── index.vue
+  preslav-bms/
+    components/
+    composables/
+    models/
+    services/
+    styles/
+    utils/
+    index.vue
+    manifest.ts
+deploy-request.json
+TASK2_AUDIT.md
+task-2-evidence/
 ```
 
----
+## Architecture and design decisions
 
-# Architecture
+- **Host boundary:** no raw calls to Fleet Manager `/rpc` or REST endpoints; all backend interaction is through `@host`.
+- **Modularity:** building, floor, device, energy, climate and access features are separate Vue components with separate CSS files.
+- **Client empathy:** the home view prioritizes exceptions and daily operational KPIs rather than presenting every available chart.
+- **Live vs historical data:** live cards use Host SDK live metrics; charts use Host SDK history methods and explicit time ranges.
+- **Reusable building model:** Fleet Manager locations represent buildings/rooms and groups represent floors.
+- **Floor-plan configuration:** schematic and marker layout are UI metadata rather than device telemetry.
 
+## Deploy request
+
+[`deploy-request.json`](deploy-request.json) is the exact customization manifest used for package validation and BM deployment:
+
+```json
+{
+  "schemaVersion": 1,
+  "clientName": "Preslav Facilities",
+  "title": "Preslav Building Management System",
+  "subtitle": "Energy, climate and access monitoring",
+  "buildingName": "Preslav Smart Office"
+}
 ```
-Fleet Management Backend
-            │
-            │
-        Host SDK
-            │
-            ▼
-     Preslav BMS Template
-            │
-    ├── Building Overview
-    ├── Building
-    ├── 3D Building
-    ├── Floor Plans
-    ├── Devices
-    ├── Energy
-    ├── Climate
-    └── Door / Window
-```
 
----
-
-# Host SDK
-
-The template communicates with Fleet Management exclusively through the Host SDK.
-
-No direct REST API calls are used.
-
-No custom backend services are required.
-
----
-
-# Deployment
-
-Build the custom template image:
+## Validation
 
 ```bash
-cd /var/www/preslav-bms-platform
+cd /var/www/fleet-management/frontend
+npm ci
 
-./deploy-preslav-bms.sh
+npm run validate:customization -- \
+  /var/www/preslav-bms-platform/deploy-request.json
+
+npm run validate:template-package -- \
+  /var/www/preslav-bms-platform \
+  preslav-bms \
+  /var/www/preslav-bms-platform/deploy-request.json
+
+npm run check:template-boundaries -- \
+  /var/www/preslav-bms-platform/templates/preslav-bms
 ```
 
-Official Fleet Management deployment:
+The three validation gates passed during development. See [`VALIDATION.md`](VALIDATION.md).
+
+## Final build and deployment
+
+The assignment-required deployment path is Fleet Manager’s BM pipeline, not a standalone dev server:
 
 ```bash
-deploy.sh \
+cd /var/www/fleet-management
+
+./deploy.sh \
   --mode bm \
-  --manifest deploy-request.json \
-  --template-source /path/to/preslav-bms-platform
+  --manifest /var/www/preslav-bms-platform/deploy-request.json \
+  --template-source /var/www/preslav-bms-platform
 ```
 
----
+Local helper scripts are included for the iterative development workflow, but the command above is the authoritative final deployment command.
 
-# Validation
+## Device onboarding
 
-The project is designed to satisfy the Fleet Management template requirements:
+1. Deploy Fleet Manager and open its administration UI.
+2. Add the Shelly Plug and configure its outbound Fleet Manager WebSocket.
+3. Approve the device from the Waiting Room.
+4. Pair the Shelly BLU H&T and Door/Window sensors through the plug acting as a Bluetooth gateway.
+5. Approve/assign devices and organize them under locations and floor groups.
+6. Open Preslav BMS and verify live readings before recording the walkthrough.
 
-- Template Package Validation
-- Template Boundary Validation
-- Client Build Validation
-- Host SDK only communication
+## Task 2 backend audit
 
----
+The short audit requested by the assignment is in [`TASK2_AUDIT.md`](TASK2_AUDIT.md). Supporting measurements are under [`task-2-evidence/`](task-2-evidence/README.md), with the EM persistence investigation in [`PIPELINE_INVESTIGATION.md`](PIPELINE_INVESTIGATION.md) and a concise outcome summary in [`FINAL_RESULTS.md`](FINAL_RESULTS.md).
 
-# Supported Devices
+## What I would do next
 
-- Shelly Plug
-- Shelly BLU H&T
-- Shelly BLU Door / Window
-
----
-
-# Future Improvements
-
-Possible future improvements include:
-
-- Multi-building support
-- Advanced alert engine
-- Historical analytics
-- Role-based permissions
-- Export reports
-- Building automation rules
-
----
-
-# Author
-
-**Preslav Stefanov**
-
-Full Stack Developer
-
-New Bulgarian University
-
-Faculty of Informatics
-
----
-
-# License
-
-This project was developed as part of a technical assessment for Shelly Fleet Management.
+- Persist floor-plan configuration and door events server-side with an approved FM extension point.
+- Add shared alert acknowledgement and audit history.
+- Validate accessibility and mobile/tablet workflows with facility operators.
+- Add automated component and Host SDK contract tests.
+- Complete the sustained 5,000-device EM write-path benchmark described in the audit.

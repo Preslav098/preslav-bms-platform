@@ -1,8 +1,1 @@
-active=5000
-admitted=5000
-waiting=0
-connecting=0
-tx=500/s
-fail=0
-drop=0
-timeout=0
+2026-07-16 17:05:37 INFO STATS up=00:12:25 [active=5000 admitted=5000 waiting=0 connecting=0] | tx=500/s rx=0.00/s | unsol=500/s replies=0.00/s | drop=0.00/s timeout=0.00/s error=0.00/s malf=0.00/s sf=0.00/s | attempts=0.00/s ok=0.00/s fail=0.00/s | HShTo=0 HTTP3=0 HTTP4=0 HTTP5=0 Inv=0 TLS=0 DNS=0 Ref=0 Reconn=0

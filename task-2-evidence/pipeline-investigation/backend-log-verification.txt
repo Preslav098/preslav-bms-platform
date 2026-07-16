@@ -1,0 +1,5 @@
+Fleet Manager log evidence:
+- simulated Shelly Pro 3EM devices were recognized;
+- status keys included em:0 and emdata:0;
+- four entities were created per device: temperature:0, em:0, emdata:0 and schedule:0;
+- energy and emdata components were registered.
