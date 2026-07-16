@@ -1,0 +1,560 @@
+.sidebar {
+    --sidebar-horizontal-padding: 14px;
+
+    position: sticky;
+    top: 0;
+
+    display: flex;
+    width: 272px;
+    height: 100vh;
+    min-height: 100vh;
+    min-width: 0;
+    flex-direction: column;
+
+    border-right: 1px solid rgb(51 65 85 / 72%);
+
+    color: #cbd5e1;
+    background:
+        radial-gradient(circle at 20% 0%,
+            rgb(37 99 235 / 8%),
+            transparent 28%),
+        linear-gradient(180deg,
+            #0f172a 0%,
+            #0b1220 100%);
+
+    box-shadow:
+        14px 0 45px rgb(2 6 23 / 16%);
+
+    overflow: hidden;
+
+    transition:
+        width 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.sidebar--collapsed {
+    width: 88px;
+}
+
+.sidebar--mobile {
+    position: relative;
+
+    width: 100%;
+    height: 100%;
+    min-height: 100%;
+
+    border-right: 1px solid #334155;
+
+    box-shadow:
+        24px 0 70px rgb(0 0 0 / 42%);
+}
+
+.sidebar__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+
+    min-width: 0;
+    min-height: 88px;
+    padding:
+        16px var(--sidebar-horizontal-padding);
+
+    border-bottom: 1px solid rgb(51 65 85 / 55%);
+}
+
+.sidebar__brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    min-width: 0;
+}
+
+.sidebar__logo {
+    display: grid;
+    flex: 0 0 auto;
+    place-items: center;
+
+    width: 44px;
+    height: 44px;
+
+    border: 1px solid rgb(129 140 248 / 32%);
+    border-radius: 14px;
+
+    color: #ffffff;
+
+    background:
+        linear-gradient(135deg,
+            #2563eb 0%,
+            #7c3aed 100%);
+
+    box-shadow:
+        0 12px 28px rgb(37 99 235 / 24%),
+        inset 0 1px 0 rgb(255 255 255 / 16%);
+
+    font-size: 19px;
+    font-weight: 900;
+}
+
+.sidebar__brand-text {
+    display: grid;
+    min-width: 0;
+    gap: 3px;
+
+    transition:
+        opacity 0.18s ease,
+        transform 0.18s ease;
+}
+
+.sidebar__brand-text strong,
+.sidebar__brand-text small {
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.sidebar__brand-text strong {
+    color: #f8fafc;
+
+    font-size: 15px;
+    font-weight: 800;
+}
+
+.sidebar__brand-text small {
+    color: #64748b;
+
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+}
+
+.sidebar__collapse-button {
+    display: grid;
+    flex: 0 0 auto;
+    place-items: center;
+
+    width: 34px;
+    height: 34px;
+    padding: 0;
+
+    border: 1px solid #334155;
+    border-radius: 11px;
+
+    color: #94a3b8;
+    background: rgb(30 41 59 / 72%);
+
+    cursor: pointer;
+
+    transition:
+        color 0.2s ease,
+        border-color 0.2s ease,
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+
+.sidebar__collapse-button:hover {
+    color: #ffffff;
+    border-color: #3b82f6;
+    background: rgb(37 99 235 / 34%);
+}
+
+.sidebar__collapse-button:active {
+    transform: scale(0.94);
+}
+
+.sidebar__collapse-icon {
+    display: block;
+
+    font-size: 25px;
+    font-weight: 300;
+    line-height: 1;
+
+    transform: translateX(-1px);
+
+    transition: transform 0.25s ease;
+}
+
+.sidebar__collapse-icon--collapsed {
+    transform:
+        translateX(1px) rotate(180deg);
+}
+
+.sidebar__navigation {
+    display: flex;
+    flex: 1;
+    min-height: 0;
+    flex-direction: column;
+    gap: 7px;
+
+    padding:
+        18px var(--sidebar-horizontal-padding);
+
+    overflow-x: hidden;
+    overflow-y: auto;
+
+    scrollbar-width: thin;
+    scrollbar-color:
+        #334155 transparent;
+}
+
+.sidebar__navigation::-webkit-scrollbar {
+    width: 5px;
+}
+
+.sidebar__navigation::-webkit-scrollbar-thumb {
+    border-radius: 999px;
+    background: #334155;
+}
+
+.sidebar__section-label {
+    margin: 0 0 5px;
+    padding: 0 12px;
+
+    overflow: hidden;
+
+    color: #475569;
+
+    font-size: 9px;
+    font-weight: 900;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    white-space: nowrap;
+
+    transition:
+        opacity 0.18s ease,
+        height 0.18s ease;
+}
+
+.sidebar__navigation-item {
+    position: relative;
+
+    display: grid;
+    grid-template-columns:
+        32px minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 11px;
+
+    width: 100%;
+    min-width: 0;
+    min-height: 50px;
+    padding: 9px 12px;
+
+    border: 1px solid transparent;
+    border-radius: 13px;
+
+    color: #94a3b8;
+    background: transparent;
+
+    cursor: pointer;
+
+    font: inherit;
+    text-align: left;
+
+    overflow: hidden;
+
+    transition:
+        color 0.2s ease,
+        border-color 0.2s ease,
+        background 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.sidebar__navigation-item:hover {
+    color: #e2e8f0;
+
+    border-color: rgb(71 85 105 / 70%);
+
+    background: rgb(30 41 59 / 64%);
+
+    transform: translateX(2px);
+}
+
+.sidebar__navigation-item--active {
+    color: #ffffff;
+
+    border-color: rgb(96 165 250 / 42%);
+
+    background:
+        linear-gradient(100deg,
+            rgb(37 99 235 / 96%),
+            rgb(37 99 235 / 68%));
+
+    box-shadow:
+        0 12px 30px rgb(37 99 235 / 18%),
+        inset 0 1px 0 rgb(255 255 255 / 12%);
+}
+
+.sidebar__navigation-item--active::before {
+    position: absolute;
+    top: 10px;
+    left: 0;
+
+    width: 3px;
+    height: calc(100% - 20px);
+
+    border-radius: 0 999px 999px 0;
+
+    background: #bfdbfe;
+
+    content: '';
+}
+
+.sidebar__navigation-icon {
+    display: grid;
+    place-items: center;
+
+    width: 32px;
+    height: 32px;
+
+    border-radius: 9px;
+
+    color: inherit;
+    background: rgb(15 23 42 / 42%);
+
+    font-size: 17px;
+    font-weight: 900;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+
+.sidebar__navigation-item:hover .sidebar__navigation-icon {
+    transform: scale(1.04);
+}
+
+.sidebar__navigation-item--active .sidebar__navigation-icon {
+    background: rgb(255 255 255 / 12%);
+}
+
+.sidebar__navigation-label {
+    min-width: 0;
+
+    overflow: hidden;
+
+    font-size: 13px;
+    font-weight: 750;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    transition:
+        opacity 0.18s ease,
+        transform 0.18s ease;
+}
+
+.sidebar__navigation-badge {
+    display: grid;
+    place-items: center;
+
+    min-width: 23px;
+    height: 22px;
+    padding: 0 6px;
+
+    border: 1px solid rgb(254 202 202 / 18%);
+    border-radius: 999px;
+
+    color: #fee2e2;
+    background: #dc2626;
+
+    font-size: 9px;
+    font-weight: 900;
+}
+
+.sidebar__footer {
+    display: grid;
+    gap: 12px;
+
+    margin-top: auto;
+    padding:
+        14px var(--sidebar-horizontal-padding) 18px;
+
+    border-top: 1px solid rgb(51 65 85 / 55%);
+}
+
+.sidebar__connection {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+
+    min-width: 0;
+    padding: 12px;
+
+    border: 1px solid rgb(34 197 94 / 22%);
+    border-radius: 13px;
+
+    background:
+        linear-gradient(135deg,
+            rgb(20 83 45 / 22%),
+            rgb(6 78 59 / 12%));
+}
+
+.sidebar__connection-dot {
+    flex: 0 0 auto;
+
+    width: 9px;
+    height: 9px;
+
+    border-radius: 50%;
+
+    background: #22c55e;
+
+    box-shadow:
+        0 0 0 5px rgb(34 197 94 / 11%),
+        0 0 18px rgb(34 197 94 / 35%);
+}
+
+.sidebar__connection-text {
+    display: grid;
+    min-width: 0;
+    gap: 2px;
+}
+
+.sidebar__connection-text strong,
+.sidebar__connection-text small {
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.sidebar__connection-text strong {
+    color: #86efac;
+
+    font-size: 11px;
+    font-weight: 800;
+}
+
+.sidebar__connection-text small {
+    color: #64748b;
+
+    font-size: 9px;
+}
+
+.sidebar__version {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+
+    color: #475569;
+
+    font-size: 9px;
+    font-weight: 700;
+
+    white-space: nowrap;
+}
+
+.sidebar__version small {
+    color: #334155;
+}
+
+/* Collapsed state */
+
+.sidebar--collapsed {
+    --sidebar-horizontal-padding: 12px;
+}
+
+.sidebar--collapsed .sidebar__header {
+    flex-direction: column;
+    justify-content: center;
+    gap: 9px;
+
+    padding-block: 13px;
+}
+
+.sidebar--collapsed .sidebar__brand {
+    justify-content: center;
+}
+
+.sidebar--collapsed .sidebar__brand-text,
+.sidebar--collapsed .sidebar__section-label,
+.sidebar--collapsed .sidebar__navigation-label,
+.sidebar--collapsed .sidebar__navigation-badge,
+.sidebar--collapsed .sidebar__connection-text,
+.sidebar--collapsed .sidebar__version {
+    display: none;
+}
+
+.sidebar--collapsed .sidebar__navigation {
+    align-items: stretch;
+    padding-top: 14px;
+}
+
+.sidebar--collapsed .sidebar__navigation-item {
+    grid-template-columns: 1fr;
+    justify-items: center;
+
+    min-height: 52px;
+    padding: 9px;
+}
+
+.sidebar--collapsed .sidebar__navigation-item:hover {
+    transform: translateY(-1px);
+}
+
+.sidebar--collapsed .sidebar__navigation-item--active::before {
+    top: 12px;
+    height: calc(100% - 24px);
+}
+
+.sidebar--collapsed .sidebar__connection {
+    justify-content: center;
+
+    padding: 13px 8px;
+}
+
+/* Mobile drawer */
+
+.sidebar--mobile .sidebar__collapse-button {
+    display: none;
+}
+
+.sidebar--mobile .sidebar__header {
+    min-height: 76px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .sidebar,
+    .sidebar *,
+    .sidebar *::before,
+    .sidebar *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+    }
+}
+/* =========================================================
+   Full-height sidebar stabilization
+   The desktop sidebar is fixed by AppLayout.css. Its own
+   sections scroll internally without breaking the shell.
+   ========================================================= */
+.sidebar {
+    height: 100dvh;
+    min-height: 100dvh;
+    max-height: 100dvh;
+}
+
+.sidebar__header,
+.sidebar__footer {
+    flex: 0 0 auto;
+}
+
+.sidebar__navigation {
+    flex: 1 1 auto;
+    min-height: 0;
+    overscroll-behavior: contain;
+}
+
+.sidebar--mobile {
+    position: relative;
+    inset: auto;
+    width: 100%;
+    height: 100dvh;
+    min-height: 100dvh;
+    max-height: 100dvh;
+}

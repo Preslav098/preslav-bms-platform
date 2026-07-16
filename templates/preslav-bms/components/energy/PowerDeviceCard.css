@@ -1,0 +1,130 @@
+.power-device-card {
+    min-width: 0;
+    padding: 17px;
+    border: 1px solid #334155;
+    border-radius: 15px;
+    background: linear-gradient(180deg, rgb(15 23 42 / 94%), rgb(15 23 42 / 78%));
+}
+
+.power-device-card header {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 11px;
+}
+
+.power-device-card__icon {
+    display: grid;
+    place-items: center;
+    width: 39px;
+    height: 39px;
+    border-radius: 11px;
+    color: #fde68a;
+    background: rgb(161 98 7 / 24%);
+    font-weight: 900;
+}
+
+.power-device-card header > div {
+    display: grid;
+    min-width: 0;
+    gap: 3px;
+}
+
+.power-device-card header strong,
+.power-device-card header small {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.power-device-card header strong {
+    color: #f8fafc;
+    font-size: 13px;
+}
+
+.power-device-card header small {
+    color: #64748b;
+    font-size: 10px;
+}
+
+.power-device-card__status {
+    color: #f87171;
+    font-size: 10px;
+    font-weight: 900;
+}
+
+.power-device-card__status--online {
+    color: #4ade80;
+}
+
+.power-device-card__power {
+    display: grid;
+    gap: 4px;
+    margin-top: 20px;
+}
+
+.power-device-card__power small,
+.power-device-card__metrics small {
+    color: #64748b;
+    font-size: 9px;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.power-device-card__power strong {
+    color: #f8fafc;
+    font-size: 28px;
+}
+
+.power-device-card__meter {
+    height: 7px;
+    margin: 14px 0;
+    overflow: hidden;
+    border-radius: 999px;
+    background: #1e293b;
+}
+
+.power-device-card__meter span {
+    display: block;
+    height: 100%;
+    min-width: 3px;
+    border-radius: inherit;
+    background: linear-gradient(90deg, #2563eb, #60a5fa);
+}
+
+.power-device-card__metrics {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
+}
+
+.power-device-card__metrics > div {
+    display: grid;
+    min-width: 0;
+    gap: 4px;
+    padding: 9px;
+    border: 1px solid #1e293b;
+    border-radius: 10px;
+    background: rgb(30 41 59 / 46%);
+}
+
+.power-device-card__metrics strong {
+    overflow: hidden;
+    color: #cbd5e1;
+    font-size: 11px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.power-device-card footer {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: 14px;
+    padding-top: 13px;
+    border-top: 1px solid #1e293b;
+    color: #64748b;
+    font-size: 9px;
+    font-weight: 800;
+}

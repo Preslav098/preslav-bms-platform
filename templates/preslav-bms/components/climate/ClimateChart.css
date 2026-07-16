@@ -1,0 +1,135 @@
+.climate-chart {
+    min-width: 0;
+    padding: 22px;
+    border: 1px solid rgba(148, 163, 184, 0.16);
+    border-radius: 20px;
+    background:
+        linear-gradient(145deg,
+            rgba(30, 41, 59, 0.94),
+            rgba(15, 23, 42, 0.8));
+}
+
+.climate-chart__header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 24px;
+}
+
+.climate-chart__header p {
+    margin: 0;
+    color: #60a5fa;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.climate-chart__header h3 {
+    margin: 5px 0 0;
+    font-size: 21px;
+}
+
+.climate-chart__legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    color: #94a3b8;
+    font-size: 13px;
+}
+
+.climate-chart__legend span {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+}
+
+.climate-chart__legend-dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+}
+
+.climate-chart__legend-dot--temperature {
+    background: #f59e0b;
+}
+
+.climate-chart__legend-dot--humidity {
+    background: #38bdf8;
+}
+
+.climate-chart__canvas {
+    min-width: 0;
+}
+
+.climate-chart__svg {
+    display: block;
+    width: 100%;
+    height: 320px;
+    overflow: visible;
+}
+
+.climate-chart__grid-line {
+    stroke: rgba(148, 163, 184, 0.14);
+    stroke-width: 1;
+}
+
+.climate-chart__line {
+    fill: none;
+    stroke-width: 4;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.climate-chart__line--temperature {
+    stroke: #f59e0b;
+}
+
+.climate-chart__line--humidity {
+    stroke: #38bdf8;
+}
+
+.climate-chart__dot {
+    stroke: #0f172a;
+    stroke-width: 2;
+}
+
+.climate-chart__dot--temperature {
+    fill: #f59e0b;
+}
+
+.climate-chart__dot--humidity {
+    fill: #38bdf8;
+}
+
+.climate-chart__labels {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+    padding: 0 10px 0 40px;
+    color: #64748b;
+    font-size: 12px;
+}
+
+.climate-chart__message {
+    display: grid;
+    min-height: 320px;
+    place-items: center;
+    color: #94a3b8;
+    text-align: center;
+}
+
+.climate-chart__message--error {
+    color: #f87171;
+}
+
+@media (max-width: 680px) {
+    .climate-chart__header {
+        flex-direction: column;
+    }
+
+    .climate-chart__svg {
+        height: 260px;
+    }
+}

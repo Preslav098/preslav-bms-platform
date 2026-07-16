@@ -1,0 +1,154 @@
+.device-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+
+    width: 100%;
+    min-width: 0;
+    padding: 13px 14px;
+
+    border: 1px solid #334155;
+    border-radius: 14px;
+
+    background: rgb(15 23 42 / 82%);
+}
+
+.device-toolbar__summary {
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+
+    min-width: 0;
+}
+
+.device-toolbar__summary strong {
+    color: #f8fafc;
+    font-size: 18px;
+}
+
+.device-toolbar__summary span {
+    color: #64748b;
+    font-size: 12px;
+}
+
+.device-toolbar__actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 10px;
+
+    min-width: 0;
+}
+
+.device-toolbar__sort {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    color: #64748b;
+
+    font-size: 11px;
+    font-weight: 800;
+    white-space: nowrap;
+}
+
+.device-toolbar__sort select {
+    height: 40px;
+    padding: 0 34px 0 12px;
+
+    border: 1px solid #334155;
+    border-radius: 10px;
+    outline: 0;
+
+    color: #e2e8f0;
+    background: #0f172a;
+
+    cursor: pointer;
+
+    font: inherit;
+    font-size: 12px;
+}
+
+.device-toolbar__button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    height: 40px;
+    padding: 0 14px;
+
+    border: 1px solid #334155;
+    border-radius: 10px;
+
+    color: #cbd5e1;
+    background: #1e293b;
+
+    cursor: pointer;
+
+    font: inherit;
+    font-size: 12px;
+    font-weight: 800;
+    white-space: nowrap;
+}
+
+.device-toolbar__button--primary {
+    color: #eff6ff;
+    border-color: rgb(96 165 250 / 40%);
+    background: #2563eb;
+}
+
+.device-toolbar__button:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+
+.device-toolbar__refresh-icon {
+    display: inline-block;
+}
+
+.device-toolbar__refresh-icon--spinning {
+    animation: device-toolbar-spin 0.8s linear infinite;
+}
+
+@keyframes device-toolbar-spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@media (max-width: 850px) {
+    .device-toolbar {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .device-toolbar__actions {
+        justify-content: stretch;
+    }
+
+    .device-toolbar__sort {
+        flex: 1;
+    }
+
+    .device-toolbar__sort select {
+        width: 100%;
+    }
+}
+
+@media (max-width: 600px) {
+    .device-toolbar__actions {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .device-toolbar__sort {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .device-toolbar__button {
+        width: 100%;
+    }
+}

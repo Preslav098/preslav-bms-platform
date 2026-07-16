@@ -1,0 +1,174 @@
+.app-layout {
+    --sidebar-width: 272px;
+
+    display: flex;
+    width: 100%;
+    min-width: 0;
+    min-height: 100dvh;
+
+    color: #e2e8f0;
+    background: #0b1220;
+}
+
+.app-layout--sidebar-collapsed {
+    --sidebar-width: 88px;
+}
+
+.app-layout__desktop-sidebar {
+    position: relative;
+    z-index: 100;
+
+    flex: 0 0 var(--sidebar-width);
+    width: var(--sidebar-width);
+    min-width: var(--sidebar-width);
+
+    transition:
+        flex-basis 0.25s ease,
+        width 0.25s ease,
+        min-width 0.25s ease;
+}
+
+.app-layout__main {
+    display: flex;
+    flex: 1 1 auto;
+    width: 0;
+    min-width: 0;
+    min-height: 100dvh;
+    flex-direction: column;
+}
+
+.app-layout__content {
+    flex: 1 1 auto;
+    width: 100%;
+    min-width: 0;
+    padding: clamp(18px, 2vw, 30px);
+
+    background:
+        radial-gradient(circle at top right,
+            rgb(37 99 235 / 12%),
+            transparent 32%),
+        #0b1220;
+}
+
+.app-layout__mobile-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+
+    display: flex;
+
+    background: rgb(2 6 23 / 72%);
+    backdrop-filter: blur(6px);
+}
+
+.app-layout__mobile-drawer {
+    width: min(300px, 88vw);
+    height: 100dvh;
+
+    animation: app-layout-drawer-in 0.22s ease-out;
+}
+
+@keyframes app-layout-drawer-in {
+    from {
+        transform: translateX(-100%);
+    }
+
+    to {
+        transform: translateX(0);
+    }
+}
+
+@media (max-width: 900px) {
+    .app-layout__desktop-sidebar {
+        display: none;
+    }
+
+    .app-layout__main {
+        width: 100%;
+        min-height: 100dvh;
+    }
+
+    .app-layout__content {
+        padding: 18px;
+    }
+}
+
+@media (max-width: 600px) {
+    .app-layout__content {
+        padding: 14px;
+    }
+}
+
+.app-layout__content,
+.app-layout__main,
+.app-layout main {
+    background:
+        radial-gradient(circle at top right,
+            rgba(30, 64, 175, 0.08),
+            transparent 34%),
+        #081321;
+}
+/* Responsive layout stabilization */
+.app-layout {
+    align-items: stretch;
+    overflow-x: clip;
+}
+
+.app-layout__desktop-sidebar {
+    position: sticky;
+    top: 0;
+    align-self: flex-start;
+    height: 100dvh;
+}
+
+.app-layout__main,
+.app-layout__content {
+    max-width: 100%;
+    overflow-x: clip;
+}
+
+.app-layout__content > * {
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+}
+
+@media (max-width: 1100px) {
+    .app-layout {
+        --sidebar-width: 232px;
+    }
+
+    .app-layout--sidebar-collapsed {
+        --sidebar-width: 76px;
+    }
+}
+
+/* =========================================================
+   Fixed desktop sidebar
+   Keep navigation full-height on every scrollable page.
+   ========================================================= */
+@media (min-width: 901px) {
+    .app-layout__desktop-sidebar {
+        position: relative;
+        top: auto;
+        align-self: stretch;
+        height: auto;
+        min-height: 100dvh;
+    }
+
+    .app-layout__desktop-sidebar > :deep(.sidebar) {
+        position: fixed;
+        inset-block: 0;
+        left: 0;
+        z-index: 100;
+
+        width: var(--sidebar-width);
+        height: 100dvh;
+        min-height: 100dvh;
+        max-height: 100dvh;
+    }
+
+    .app-layout__main {
+        min-height: 100dvh;
+    }
+}

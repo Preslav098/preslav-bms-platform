@@ -1,0 +1,153 @@
+.device-page {
+    display: grid;
+    width: 100%;
+    min-width: 0;
+    gap: 20px;
+}
+
+.device-page__header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.device-page__eyebrow {
+    margin: 0 0 7px;
+
+    color: #60a5fa;
+
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+}
+
+.device-page h2 {
+    margin: 0 0 8px;
+
+    color: #f8fafc;
+
+    font-size: clamp(26px, 3vw, 36px);
+}
+
+.device-page__description {
+    max-width: 680px;
+    margin: 0;
+
+    color: #94a3b8;
+
+    line-height: 1.6;
+}
+
+.device-page__refresh:disabled {
+    cursor: wait;
+    opacity: 0.55;
+}
+
+.device-page__refresh-icon {
+    display: inline-block;
+
+    font-size: 17px;
+    line-height: 1;
+}
+
+.device-page__refresh-icon--spinning {
+    animation: device-page-refresh-spin 0.8s linear infinite;
+}
+
+@keyframes device-page-refresh-spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
+
+.device-page__stat-card span {
+    color: #94a3b8;
+
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.device-page__stat-card strong {
+    color: #f8fafc;
+
+    font-size: 30px;
+    line-height: 1;
+}
+
+.device-page__stat-value--success {
+    color: #4ade80 !important;
+}
+
+.device-page__stat-value--danger {
+    color: #f87171 !important;
+}
+
+.device-page__stat-value--warning {
+    color: #fbbf24 !important;
+}
+
+
+.device-page__empty-icon {
+    display: grid;
+    place-items: center;
+
+    width: 58px;
+    height: 58px;
+    margin-bottom: 14px;
+
+    border-radius: 16px;
+
+    background: linear-gradient(135deg, #2563eb, #7c3aed);
+
+    font-size: 25px;
+}
+
+.device-page__empty h3 {
+    margin: 0 0 8px;
+
+    color: #f8fafc;
+}
+
+.device-page__empty p {
+    max-width: 460px;
+    margin: 0 0 18px;
+
+    color: #94a3b8;
+
+    line-height: 1.6;
+}
+
+.device-page__empty button {
+    padding: 10px 14px;
+
+    border: 1px solid #334155;
+    border-radius: 10px;
+
+    color: #e2e8f0;
+    background: #1e293b;
+
+    cursor: pointer;
+
+    font: inherit;
+    font-weight: 800;
+}
+
+@media (max-width: 1000px) {}
+
+@media (max-width: 650px) {
+    .device-page__header {
+        flex-direction: column;
+    }
+
+
+}
+/* Keep every Devices section inside the available content column. */
+.device-page > * {
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+}

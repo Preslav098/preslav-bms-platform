@@ -1,0 +1,216 @@
+.device-overview-card {
+    width: 100%;
+    padding: 17px;
+    text-align: left;
+    border: 1px solid #26364e;
+    border-radius: 16px;
+    background:
+        linear-gradient(
+            145deg,
+            #17243a,
+            #111d31
+        );
+    color: #e5edf8;
+    font: inherit;
+    cursor: pointer;
+    box-shadow:
+        0 9px 24px rgba(0, 0, 0, 0.16),
+        inset 0 1px 0 rgba(255, 255, 255, 0.025);
+    transition:
+        transform 180ms ease,
+        border-color 180ms ease,
+        box-shadow 180ms ease;
+}
+
+.device-overview-card:hover {
+    transform: translateY(-3px);
+    border-color: rgba(96, 165, 250, 0.65);
+    box-shadow:
+        0 16px 32px rgba(0, 0, 0, 0.25),
+        0 0 22px rgba(37, 99, 235, 0.08);
+}
+
+.device-overview-card__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+/*
+ * Същият размер, border, background и glow
+ * като при .kpi-card__icon.
+ */
+.device-overview-card__icon {
+    display: grid;
+    width: 43px;
+    height: 43px;
+    flex: 0 0 43px;
+    place-items: center;
+    border: 1px solid
+        color-mix(
+            in srgb,
+            var(--device-accent) 30%,
+            #26364e
+        );
+    border-radius: 12px;
+    background:
+        color-mix(
+            in srgb,
+            var(--device-accent) 14%,
+            #111827
+        );
+    color: var(--device-accent);
+    font-size: 1.18rem;
+    font-weight: 900;
+    line-height: 1;
+    box-shadow:
+        inset 0 0 18px
+            color-mix(
+                in srgb,
+                var(--device-accent) 10%,
+                transparent
+            );
+}
+
+/* Current Power KPI */
+.device-overview-card__icon--blue {
+    --device-accent: #3b82f6;
+}
+
+/* Temperature KPI */
+.device-overview-card__icon--orange {
+    --device-accent: #f97316;
+}
+
+/* Open Doors / Devices Online KPI */
+.device-overview-card__icon--green {
+    --device-accent: #22c55e;
+}
+
+/* Default / Alerts KPI */
+.device-overview-card__icon--purple {
+    --device-accent: #a855f7;
+}
+
+.device-overview-card__status {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    min-height: 28px;
+    padding: 0 10px;
+    border: 1px solid #334155;
+    border-radius: 999px;
+    background: rgba(15, 23, 42, 0.92);
+    color: #94a3b8;
+    font-size: 0.67rem;
+    font-weight: 800;
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.03),
+        0 5px 14px rgba(0, 0, 0, 0.18);
+}
+
+.device-overview-card__status-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 999px;
+    background: currentColor;
+    box-shadow: 0 0 8px currentColor;
+}
+
+.device-overview-card__status--online {
+    border-color: rgba(34, 197, 94, 0.3);
+    background: rgba(20, 83, 45, 0.58);
+    color: #86efac;
+}
+
+.device-overview-card__status--offline {
+    border-color: rgba(244, 63, 94, 0.35);
+    background: rgba(127, 29, 29, 0.58);
+    color: #fda4af;
+}
+
+.device-overview-card__status--warning {
+    border-color: rgba(249, 115, 22, 0.35);
+    background: rgba(124, 45, 18, 0.58);
+    color: #fdba74;
+}
+
+.device-overview-card__content {
+    margin-top: 17px;
+}
+
+.device-overview-card__content h4 {
+    margin: 0;
+    overflow-wrap: anywhere;
+    color: #f1f5f9;
+    font-size: 0.91rem;
+    font-weight: 700;
+    line-height: 1.4;
+}
+
+.device-overview-card__content p {
+    margin: 6px 0 0;
+    color: #8190a8;
+    font-size: 0.72rem;
+}
+
+.device-overview-card__readings {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 9px;
+    margin: 17px 0 0;
+}
+
+.device-overview-card__readings div {
+    min-width: 0;
+    padding: 10px;
+    border: 1px solid #26364e;
+    border-radius: 10px;
+    background: rgba(8, 18, 32, 0.58);
+}
+
+.device-overview-card__readings dt {
+    color: #71819b;
+    font-size: 0.61rem;
+    font-weight: 800;
+    letter-spacing: 0.035em;
+    text-transform: uppercase;
+}
+
+.device-overview-card__readings dd {
+    margin: 5px 0 0;
+    overflow: hidden;
+    color: #dbe7f5;
+    font-size: 0.73rem;
+    font-weight: 700;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.device-overview-card__footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: 15px;
+    padding-top: 13px;
+    border-top: 1px solid #26364e;
+}
+
+.device-overview-card__footer span {
+    min-width: 0;
+    overflow: hidden;
+    color: #70809a;
+    font-size: 0.62rem;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.device-overview-card__footer strong {
+    flex: 0 0 auto;
+    color: #60a5fa;
+    font-size: 0.68rem;
+    font-weight: 750;
+    white-space: nowrap;
+}

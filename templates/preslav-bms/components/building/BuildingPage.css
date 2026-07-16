@@ -1,0 +1,257 @@
+.building-page {
+    display: grid;
+    width: 100%;
+    min-width: 0;
+    gap: 20px;
+}
+
+.building-page__header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.building-page__eyebrow {
+    margin: 0 0 7px;
+
+    color: #60a5fa;
+
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+}
+
+.building-page h2 {
+    margin: 0 0 8px;
+
+    color: #f8fafc;
+
+    font-size: clamp(26px, 3vw, 36px);
+}
+
+.building-page__description {
+    max-width: 680px;
+    margin: 0;
+
+    color: #94a3b8;
+    line-height: 1.6;
+}
+
+.building-page__floors-button {
+    display: inline-flex;
+    flex: 0 0 auto;
+    align-items: center;
+    gap: 8px;
+
+    min-height: 42px;
+    padding: 0 15px;
+
+    border: 1px solid rgb(96 165 250 / 38%);
+    border-radius: 11px;
+
+    color: #eff6ff;
+    background: #2563eb;
+
+    cursor: pointer;
+
+    font: inherit;
+    font-size: 12px;
+    font-weight: 800;
+}
+
+.building-page__statistics {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 14px;
+}
+
+.building-page__stat-card {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    align-items: center;
+    gap: 14px;
+
+    min-width: 0;
+    padding: 18px;
+
+    border: 1px solid #334155;
+    border-radius: 15px;
+
+    background:
+        linear-gradient(180deg,
+            rgb(30 41 59 / 88%),
+            rgb(15 23 42 / 94%));
+}
+
+.building-page__stat-icon {
+    display: grid;
+    place-items: center;
+
+    width: 46px;
+    height: 46px;
+
+    border-radius: 13px;
+
+    color: #bfdbfe;
+    background: rgb(37 99 235 / 20%);
+
+    font-size: 19px;
+    font-weight: 900;
+}
+
+.building-page__stat-icon--online {
+    color: #86efac;
+    background: rgb(22 101 52 / 25%);
+}
+
+.building-page__stat-icon--offline {
+    color: #fca5a5;
+    background: rgb(127 29 29 / 25%);
+}
+
+.building-page__stat-card>div {
+    display: grid;
+    min-width: 0;
+    gap: 5px;
+}
+
+.building-page__stat-card span {
+    color: #94a3b8;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.building-page__stat-card strong {
+    color: #f8fafc;
+    font-size: 30px;
+    line-height: 1;
+}
+
+.building-page__value--online {
+    color: #4ade80 !important;
+}
+
+.building-page__value--offline {
+    color: #f87171 !important;
+}
+
+.building-page__floors {
+    padding: 18px;
+
+    border: 1px solid #334155;
+    border-radius: 17px;
+
+    background: rgb(30 41 59 / 58%);
+}
+
+.building-page__section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+
+    margin-bottom: 16px;
+}
+
+.building-page__section-header p {
+    margin: 0 0 5px;
+
+    color: #60a5fa;
+
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.building-page__section-header h3 {
+    margin: 0;
+
+    color: #f8fafc;
+    font-size: 20px;
+}
+
+.building-page__section-header>span {
+    color: #64748b;
+    font-size: 12px;
+    font-weight: 800;
+}
+
+.building-page__floor-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,
+            minmax(300px, 1fr));
+    gap: 14px;
+}
+
+.building-page__empty {
+    display: grid;
+    place-items: center;
+
+    min-height: 320px;
+    padding: 36px 20px;
+
+    border: 1px dashed #475569;
+    border-radius: 17px;
+
+    color: #94a3b8;
+
+    text-align: center;
+}
+
+.building-page__empty>span {
+    font-size: 36px;
+}
+
+.building-page__empty h3 {
+    margin: 12px 0 8px;
+    color: #f8fafc;
+}
+
+.building-page__empty p {
+    max-width: 480px;
+    margin: 0 0 18px;
+}
+
+.building-page__empty button {
+    min-height: 40px;
+    padding: 0 14px;
+
+    border: 1px solid #334155;
+    border-radius: 10px;
+
+    color: #e2e8f0;
+    background: #1e293b;
+
+    cursor: pointer;
+
+    font: inherit;
+    font-weight: 800;
+}
+
+@media (max-width: 1000px) {
+    .building-page__statistics {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 650px) {
+    .building-page__header {
+        flex-direction: column;
+    }
+
+    .building-page__floors-button {
+        justify-content: center;
+        width: 100%;
+    }
+
+    .building-page__statistics {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .building-page__floor-grid {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}

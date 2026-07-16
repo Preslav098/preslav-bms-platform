@@ -1,0 +1,175 @@
+.device-filters {
+    display: grid;
+    grid-template-columns:
+        minmax(0, 1fr) minmax(150px, 190px) auto;
+    align-items: center;
+    gap: 12px;
+
+    width: 100%;
+    min-width: 0;
+    padding: 14px;
+
+    border: 1px solid #334155;
+    border-radius: 15px;
+
+    background:
+        linear-gradient(180deg,
+            rgb(30 41 59 / 88%),
+            rgb(15 23 42 / 92%));
+
+    box-shadow:
+        0 16px 40px rgb(0 0 0 / 12%);
+}
+
+.device-filters__search {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    min-width: 0;
+    padding: 0 13px;
+
+    border: 1px solid #334155;
+    border-radius: 11px;
+
+    color: #64748b;
+    background: #0f172a;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
+}
+
+.device-filters__search:focus-within {
+    border-color: #3b82f6;
+    background: #111c32;
+
+    box-shadow:
+        0 0 0 3px rgb(59 130 246 / 14%);
+}
+
+.device-filters__search-icon {
+    flex: 0 0 auto;
+
+    color: #64748b;
+
+    font-size: 15px;
+}
+
+.device-filters__search input {
+    width: 100%;
+    min-width: 0;
+    height: 42px;
+
+    border: 0;
+    outline: 0;
+
+    color: #e2e8f0;
+    background: transparent;
+
+    font: inherit;
+    font-size: 13px;
+}
+
+.device-filters__search input::placeholder {
+    color: #64748b;
+}
+
+.device-filters__status {
+    width: 100%;
+    height: 42px;
+    padding: 0 38px 0 13px;
+
+    border: 1px solid #334155;
+    border-radius: 11px;
+    outline: 0;
+
+    color: #e2e8f0;
+    background-color: #0f172a;
+
+    cursor: pointer;
+
+    font: inherit;
+    font-size: 13px;
+    font-weight: 700;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.device-filters__status:focus {
+    border-color: #3b82f6;
+
+    box-shadow:
+        0 0 0 3px rgb(59 130 246 / 14%);
+}
+
+.device-filters__status option {
+    color: #e2e8f0;
+    background: #0f172a;
+}
+
+.device-filters__reset {
+    height: 42px;
+    padding: 0 16px;
+
+    border: 1px solid #334155;
+    border-radius: 11px;
+
+    color: #cbd5e1;
+    background: #1e293b;
+
+    cursor: pointer;
+
+    font: inherit;
+    font-size: 13px;
+    font-weight: 800;
+
+    transition:
+        color 0.2s ease,
+        border-color 0.2s ease,
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+
+.device-filters__reset:hover {
+    color: #ffffff;
+    border-color: #3b82f6;
+    background: #172554;
+
+    transform: translateY(-1px);
+}
+
+.device-filters__reset:disabled {
+    cursor: not-allowed;
+    opacity: 0.45;
+    transform: none;
+}
+
+@media (max-width: 760px) {
+    .device-filters {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .device-filters__search {
+        grid-column: 1 / -1;
+    }
+}
+
+@media (max-width: 520px) {
+    .device-filters {
+        grid-template-columns: 1fr;
+        padding: 12px;
+    }
+
+    .device-filters__search {
+        grid-column: auto;
+    }
+
+    .device-filters__status,
+    .device-filters__reset {
+        width: 100%;
+    }
+}

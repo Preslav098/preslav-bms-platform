@@ -1,0 +1,82 @@
+.energy-summary {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 14px;
+}
+
+.energy-summary__card {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    align-items: center;
+    gap: 14px;
+    min-width: 0;
+    padding: 18px;
+    border: 1px solid #334155;
+    border-radius: 15px;
+    background: linear-gradient(180deg, rgb(30 41 59 / 88%), rgb(15 23 42 / 94%));
+}
+
+.energy-summary__icon {
+    display: grid;
+    place-items: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 14px;
+    color: #fde68a;
+    background: rgb(161 98 7 / 25%);
+    font-size: 22px;
+    font-weight: 900;
+}
+
+.energy-summary__icon--blue {
+    color: #bfdbfe;
+    background: rgb(37 99 235 / 20%);
+}
+
+.energy-summary__icon--purple {
+    color: #ddd6fe;
+    background: rgb(109 40 217 / 20%);
+}
+
+.energy-summary__icon--green {
+    color: #bbf7d0;
+    background: rgb(22 101 52 / 22%);
+}
+
+.energy-summary__card > div {
+    display: grid;
+    min-width: 0;
+    gap: 4px;
+}
+
+.energy-summary__card small,
+.energy-summary__card span {
+    overflow: hidden;
+    color: #94a3b8;
+    font-size: 11px;
+    font-weight: 700;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.energy-summary__card strong {
+    color: #f8fafc;
+    font-size: clamp(21px, 2.4vw, 29px);
+    line-height: 1.1;
+}
+
+.energy-summary__card span {
+    color: #64748b;
+}
+
+@media (max-width: 1100px) {
+    .energy-summary {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 620px) {
+    .energy-summary {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}

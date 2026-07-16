@@ -1,0 +1,56 @@
+.device-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+}
+
+.device-action-button {
+    border: none;
+    border-radius: 10px;
+    padding: 10px 18px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition:
+        background-color 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.device-action-button:hover {
+    transform: translateY(-1px);
+}
+
+.device-action-button:active {
+    transform: translateY(0);
+}
+
+.device-action-button--primary {
+    background: #2563eb;
+    color: #ffffff;
+    box-shadow: 0 4px 10px rgba(37, 99, 235, 0.18);
+}
+
+.device-action-button--primary:hover {
+    background: #1d4ed8;
+}
+
+.device-action-button--secondary {
+    background: #f3f4f6;
+    color: #374151;
+}
+
+.device-action-button--secondary:hover {
+    background: #e5e7eb;
+}
+
+@media (max-width: 768px) {
+    .device-actions {
+        flex-direction: column;
+    }
+
+    .device-action-button {
+        width: 100%;
+    }
+}

@@ -1,0 +1,162 @@
+.energy-chart {
+    min-width: 0;
+    padding: 20px;
+    border: 1px solid #334155;
+    border-radius: 17px;
+    background: rgb(30 41 59 / 62%);
+}
+
+.energy-chart__header,
+.energy-chart__value-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+.energy-chart__header p {
+    margin: 0 0 5px;
+    color: #60a5fa;
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+}
+
+.energy-chart__header h3 {
+    margin: 0;
+    color: #f8fafc;
+    font-size: 20px;
+}
+
+.energy-chart__periods {
+    display: inline-flex;
+    gap: 4px;
+    padding: 4px;
+    border: 1px solid #334155;
+    border-radius: 11px;
+    background: #0f172a;
+}
+
+.energy-chart__periods button {
+    min-width: 45px;
+    min-height: 31px;
+    border: 0;
+    border-radius: 8px;
+    color: #64748b;
+    background: transparent;
+    cursor: pointer;
+    font: inherit;
+    font-size: 10px;
+    font-weight: 900;
+}
+
+.energy-chart__periods .energy-chart__period--active {
+    color: #eff6ff;
+    background: #2563eb;
+}
+
+.energy-chart__body {
+    min-width: 0;
+    margin-top: 20px;
+}
+
+.energy-chart__value-row {
+    justify-content: flex-start;
+    margin-bottom: 8px;
+}
+
+.energy-chart__value-row > div {
+    display: grid;
+    gap: 3px;
+    min-width: 135px;
+}
+
+.energy-chart__value-row small {
+    color: #64748b;
+    font-size: 10px;
+    font-weight: 800;
+    text-transform: uppercase;
+}
+
+.energy-chart__value-row strong {
+    color: #e2e8f0;
+    font-size: 17px;
+}
+
+.energy-chart__svg {
+    display: block;
+    width: 100%;
+    min-height: 230px;
+    overflow: visible;
+}
+
+.energy-chart__grid-line {
+    stroke: #334155;
+    stroke-width: 1;
+    stroke-dasharray: 5 7;
+}
+
+.energy-chart__line {
+    fill: none;
+    stroke: #60a5fa;
+    stroke-width: 4;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    filter: drop-shadow(0 5px 9px rgb(37 99 235 / 30%));
+}
+
+.energy-chart__point {
+    fill: #0f172a;
+    stroke: #93c5fd;
+    stroke-width: 3;
+}
+
+.energy-chart__labels {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+    padding: 0 4px;
+    color: #64748b;
+    font-size: 10px;
+    font-weight: 800;
+}
+
+.energy-chart__note {
+    margin: 16px 0 0;
+    padding-top: 14px;
+    border-top: 1px solid #334155;
+    color: #64748b;
+    font-size: 11px;
+    line-height: 1.55;
+}
+
+.energy-chart__empty {
+    display: grid;
+    place-items: center;
+    min-height: 330px;
+    color: #94a3b8;
+}
+
+@media (max-width: 650px) {
+    .energy-chart {
+        padding: 16px;
+    }
+
+    .energy-chart__header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .energy-chart__value-row {
+        justify-content: space-between;
+    }
+
+    .energy-chart__value-row > div {
+        min-width: 0;
+    }
+
+    .energy-chart__svg {
+        min-height: 190px;
+    }
+}

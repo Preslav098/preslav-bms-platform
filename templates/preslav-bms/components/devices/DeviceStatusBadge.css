@@ -1,0 +1,50 @@
+.device-status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    width: fit-content;
+    padding: 7px 12px;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1;
+    white-space: nowrap;
+}
+
+.status-dot {
+    width: 8px;
+    height: 8px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background: currentColor;
+}
+
+.device-status-badge--online {
+    background: #dcfce7;
+    color: #15803d;
+}
+
+.device-status-badge--offline {
+    background: #fee2e2;
+    color: #dc2626;
+}
+
+.device-status-badge--warning {
+    background: #fef3c7;
+    color: #b45309;
+}
+
+.device-status-badge--online .status-dot {
+    box-shadow: 0 0 0 4px rgba(21, 128, 61, 0.12);
+}
+
+.device-status-badge--warning .status-dot {
+    box-shadow: 0 0 0 4px rgba(180, 83, 9, 0.12);
+}
+
+@media (max-width: 768px) {
+    .device-status-badge {
+        padding: 6px 10px;
+        font-size: 12px;
+    }
+}
