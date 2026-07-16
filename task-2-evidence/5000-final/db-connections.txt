@@ -1,0 +1,5 @@
+ total_connections | active | idle | idle_in_transaction 
+-------------------+--------+------+---------------------
+                17 |      1 |    7 |                   0
+(1 row)
+

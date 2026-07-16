@@ -1,0 +1,300 @@
+[33m[2026-07-16T12:48:50.787] [WARN] WaitingRoom - [39mauto-admit reserve failed for SIM-shellypro3em-68f25653 — falling through to queue: error: sorry, too many clients already
+    at /app/backend/node_modules/pg-pool/index.js:45:11
+    at async Object.queryRows (/app/backend/dist/modules/PostgresProvider.js:187:24)
+[91m[2026-07-16T12:48:50.805] [ERROR] WaitingRoom - [39mFailed to check access control for SIM-shellypro3em-69d50460: error: sorry, too many clients already
+    at /app/backend/node_modules/pg-pool/index.js:45:11
+    at async device.fn_fetch (/app/backend/node_modules/expose-sql-methods/lib/postgres/index.js:139:45)
+    at async /app/backend/dist/modules/PostgresProvider.js:547:24
+    at async Object.accessControl (/app/backend/dist/modules/PostgresProvider.js:335:19)
+[91m[2026-07-16T12:48:50.805] [ERROR] WaitingRoom - [39mFailed to check access control for SIM-shellypro3em-c1db4b52: error: sorry, too many clients already
+    at /app/backend/node_modules/pg-pool/index.js:45:11
+    at async device.fn_fetch (/app/backend/node_modules/expose-sql-methods/lib/postgres/index.js:139:45)
+    at async /app/backend/dist/modules/PostgresProvider.js:547:24
+    at async Object.accessControl (/app/backend/dist/modules/PostgresProvider.js:335:19)
+[91m[2026-07-16T12:48:50.817] [ERROR] WaitingRoom - [39mFailed to check access control for SIM-shellypro3em-8faaf25c: error: sorry, too many clients already
+    at /app/backend/node_modules/pg-pool/index.js:45:11
+    at async device.fn_fetch (/app/backend/node_modules/expose-sql-methods/lib/postgres/index.js:139:45)
+    at async /app/backend/dist/modules/PostgresProvider.js:547:24
+    at async Object.accessControl (/app/backend/dist/modules/PostgresProvider.js:335:19)
+[91m[2026-07-16T12:48:50.817] [ERROR] WaitingRoom - [39mFailed to check access control for SIM-shellypro3em-5ec2d2b0: error: sorry, too many clients already
+    at /app/backend/node_modules/pg-pool/index.js:45:11
+    at async device.fn_fetch (/app/backend/node_modules/expose-sql-methods/lib/postgres/index.js:139:45)
+    at async /app/backend/dist/modules/PostgresProvider.js:547:24
+    at async Object.accessControl (/app/backend/dist/modules/PostgresProvider.js:335:19)
+[33m[2026-07-16T12:48:50.830] [WARN] WaitingRoom - [39mauto-admit reserve failed for SIM-shellypro3em-38f7b610 — falling through to queue: error: sorry, too many clients already
+    at /app/backend/node_modules/pg-pool/index.js:45:11
+    at async Object.queryRows (/app/backend/dist/modules/PostgresProvider.js:187:24)
+[33m[2026-07-16T12:48:50.830] [WARN] WaitingRoom - [39mauto-admit reserve failed for SIM-shellypro3em-dd1cc624 — falling through to queue: error: sorry, too many clients already
+    at /app/backend/node_modules/pg-pool/index.js:45:11
+    at async Object.queryRows (/app/backend/dist/modules/PostgresProvider.js:187:24)
+[33m[2026-07-16T12:48:50.841] [WARN] WaitingRoom - [39mauto-admit reserve failed for SIM-shellypro3em-82383460 — falling through to queue: error: sorry, too many clients already
+    at /app/backend/node_modules/pg-pool/index.js:45:11
+    at async Object.queryRows (/app/backend/dist/modules/PostgresProvider.js:187:24)
+[33m[2026-07-16T12:48:50.841] [WARN] WaitingRoom - [39mauto-admit reserve failed for SIM-shellypro3em-6a1ef836 — falling through to queue: error: sorry, too many clients already
+    at /app/backend/node_modules/pg-pool/index.js:45:11
+    at async Object.queryRows (/app/backend/dist/modules/PostgresProvider.js:187:24)
+[33m[2026-07-16T12:48:50.842] [WARN] WaitingRoom - [39mauto-admit reserve failed for SIM-shellypro3em-61a0413b — falling through to queue: error: sorry, too many clients already
+    at /app/backend/node_modules/pg-pool/index.js:45:11
+    at async Object.queryRows (/app/backend/dist/modules/PostgresProvider.js:187:24)
+[33m[2026-07-16T12:48:50.842] [WARN] WaitingRoom - [39mauto-admit reserve failed for SIM-shellypro3em-6d38d7e0 — falling through to queue: error: sorry, too many clients already
+    at /app/backend/node_modules/pg-pool/index.js:45:11
+    at async Object.queryRows (/app/backend/dist/modules/PostgresProvider.js:187:24)
+[33m[2026-07-16T12:48:50.842] [WARN] WaitingRoom - [39mauto-admit reserve failed for SIM-shellypro3em-496eaf81 — falling through to queue: error: sorry, too many clients already
+    at /app/backend/node_modules/pg-pool/index.js:45:11
+    at async Object.queryRows (/app/backend/dist/modules/PostgresProvider.js:187:24)
+[33m[2026-07-16T12:48:50.853] [WARN] WaitingRoom - [39mauto-admit reserve failed for SIM-shellypro3em-e62a163b — falling through to queue: error: sorry, too many clients already
+    at /app/backend/node_modules/pg-pool/index.js:45:11
+    at async Object.queryRows (/app/backend/dist/modules/PostgresProvider.js:187:24)
+[33m[2026-07-16T12:48:50.862] [WARN] WaitingRoom - [39mauto-admit reserve failed for SIM-shellypro3em-550492ff — falling through to queue: error: sorry, too many clients already
+    at /app/backend/node_modules/pg-pool/index.js:45:11
+    at async Object.queryRows (/app/backend/dist/modules/PostgresProvider.js:187:24)
+[33m[2026-07-16T12:48:50.862] [WARN] WaitingRoom - [39mauto-admit reserve failed for SIM-shellypro3em-7da6f431 — falling through to queue: error: sorry, too many clients already
+    at /app/backend/node_modules/pg-pool/index.js:45:11
+    at async Object.queryRows (/app/backend/dist/modules/PostgresProvider.js:187:24)
+[33m[2026-07-16T12:48:50.988] [WARN] WaitingRoom - [39mauto-admit reserve failed for SIM-shellypro3em-4736e963 — falling through to queue: error: sorry, too many clients already
+    at /app/backend/node_modules/pg-pool/index.js:45:11
+    at async Object.queryRows (/app/backend/dist/modules/PostgresProvider.js:187:24)
+[33m[2026-07-16T12:48:50.988] [WARN] WaitingRoom - [39mauto-admit reserve failed for SIM-shellypro3em-6cfd130f — falling through to queue: error: sorry, too many clients already
+    at /app/backend/node_modules/pg-pool/index.js:45:11
+    at async Object.queryRows (/app/backend/dist/modules/PostgresProvider.js:187:24)
+[33m[2026-07-16T12:48:50.989] [WARN] WaitingRoom - [39mauto-admit reserve failed for SIM-shellypro3em-9a4f0df8 — falling through to queue: error: sorry, too many clients already
+    at /app/backend/node_modules/pg-pool/index.js:45:11
+    at async Object.queryRows (/app/backend/dist/modules/PostgresProvider.js:187:24)
+[91m[2026-07-16T12:48:51.168] [ERROR] WaitingRoom - [39mFailed to check access control for SIM-shellypro3em-5ff68215: error: sorry, too many clients already
+    at /app/backend/node_modules/pg-pool/index.js:45:11
+    at async device.fn_fetch (/app/backend/node_modules/expose-sql-methods/lib/postgres/index.js:139:45)
+    at async /app/backend/dist/modules/PostgresProvider.js:547:24
+    at async Object.accessControl (/app/backend/dist/modules/PostgresProvider.js:335:19)
+[91m[2026-07-16T12:48:51.168] [ERROR] WaitingRoom - [39mFailed to check access control for SIM-shellypro3em-f46a8cd4: error: sorry, too many clients already
+    at /app/backend/node_modules/pg-pool/index.js:45:11
+    at async device.fn_fetch (/app/backend/node_modules/expose-sql-methods/lib/postgres/index.js:139:45)
+    at async /app/backend/dist/modules/PostgresProvider.js:547:24
+    at async Object.accessControl (/app/backend/dist/modules/PostgresProvider.js:335:19)
+[91m[2026-07-16T12:48:51.168] [ERROR] WaitingRoom - [39mFailed to check access control for SIM-shellypro3em-d0473098: error: sorry, too many clients already
+    at /app/backend/node_modules/pg-pool/index.js:45:11
+    at async device.fn_fetch (/app/backend/node_modules/expose-sql-methods/lib/postgres/index.js:139:45)
+    at async /app/backend/dist/modules/PostgresProvider.js:547:24
+    at async Object.accessControl (/app/backend/dist/modules/PostgresProvider.js:335:19)
+[91m[2026-07-16T12:48:51.168] [ERROR] WaitingRoom - [39mFailed to check access control for SIM-shellypro3em-f3f2a166: error: sorry, too many clients already
+    at /app/backend/node_modules/pg-pool/index.js:45:11
+    at async device.fn_fetch (/app/backend/node_modules/expose-sql-methods/lib/postgres/index.js:139:45)
+    at async /app/backend/dist/modules/PostgresProvider.js:547:24
+    at async Object.accessControl (/app/backend/dist/modules/PostgresProvider.js:335:19)
+[33m[2026-07-16T12:48:51.168] [WARN] WaitingRoom - [39mauto-admit reserve failed for SIM-shellypro3em-ac6c17b6 — falling through to queue: error: sorry, too many clients already
+    at /app/backend/node_modules/pg-pool/index.js:45:11
+    at async Object.queryRows (/app/backend/dist/modules/PostgresProvider.js:187:24)
+[33m[2026-07-16T12:48:51.169] [WARN] WaitingRoom - [39mauto-admit reserve failed for SIM-shellypro3em-7d7e3f63 — falling through to queue: error: sorry, too many clients already
+    at /app/backend/node_modules/pg-pool/index.js:45:11
+    at async Object.queryRows (/app/backend/dist/modules/PostgresProvider.js:187:24)
+[33m[2026-07-16T12:48:51.169] [WARN] WaitingRoom - [39mauto-admit reserve failed for SIM-shellypro3em-9b4addc8 — falling through to queue: error: sorry, too many clients already
+    at /app/backend/node_modules/pg-pool/index.js:45:11
+    at async Object.queryRows (/app/backend/dist/modules/PostgresProvider.js:187:24)
+[33m[2026-07-16T12:48:51.169] [WARN] WaitingRoom - [39mauto-admit reserve failed for SIM-shellypro3em-37007756 — falling through to queue: error: sorry, too many clients already
+    at /app/backend/node_modules/pg-pool/index.js:45:11
+    at async Object.queryRows (/app/backend/dist/modules/PostgresProvider.js:187:24)
+[33m[2026-07-16T12:48:51.170] [WARN] WaitingRoom - [39mauto-admit reserve failed for SIM-shellypro3em-d687bfac — falling through to queue: error: sorry, too many clients already
+    at /app/backend/node_modules/pg-pool/index.js:45:11
+    at async Object.queryRows (/app/backend/dist/modules/PostgresProvider.js:187:24)
+[33m[2026-07-16T12:48:51.170] [WARN] WaitingRoom - [39mauto-admit reserve failed for SIM-shellypro3em-65460e2f — falling through to queue: error: sorry, too many clients already
+    at /app/backend/node_modules/pg-pool/index.js:45:11
+    at async Object.queryRows (/app/backend/dist/modules/PostgresProvider.js:187:24)
+[33m[2026-07-16T12:48:51.170] [WARN] WaitingRoom - [39mauto-admit reserve failed for SIM-shellypro3em-296f26e6 — falling through to queue: error: sorry, too many clients already
+    at /app/backend/node_modules/pg-pool/index.js:45:11
+    at async Object.queryRows (/app/backend/dist/modules/PostgresProvider.js:187:24)
+[33m[2026-07-16T12:48:51.171] [WARN] WaitingRoom - [39mauto-admit reserve failed for SIM-shellypro3em-a8776288 — falling through to queue: error: sorry, too many clients already
+    at /app/backend/node_modules/pg-pool/index.js:45:11
+    at async Object.queryRows (/app/backend/dist/modules/PostgresProvider.js:187:24)
+[33m[2026-07-16T12:48:51.171] [WARN] WaitingRoom - [39mauto-admit reserve failed for SIM-shellypro3em-9f3e68e4 — falling through to queue: error: sorry, too many clients already
+    at /app/backend/node_modules/pg-pool/index.js:45:11
+    at async Object.queryRows (/app/backend/dist/modules/PostgresProvider.js:187:24)
+[33m[2026-07-16T12:48:51.182] [WARN] WaitingRoom - [39mauto-admit reserve failed for SIM-shellypro3em-a9fa52a5 — falling through to queue: error: sorry, too many clients already
+    at /app/backend/node_modules/pg-pool/index.js:45:11
+    at async Object.queryRows (/app/backend/dist/modules/PostgresProvider.js:187:24)
+[33m[2026-07-16T12:48:51.183] [WARN] WaitingRoom - [39mauto-admit reserve failed for SIM-shellypro3em-54686558 — falling through to queue: error: sorry, too many clients already
+    at /app/backend/node_modules/pg-pool/index.js:45:11
+    at async Object.queryRows (/app/backend/dist/modules/PostgresProvider.js:187:24)
+[33m[2026-07-16T12:48:51.184] [WARN] WaitingRoom - [39mauto-admit reserve failed for SIM-shellypro3em-fb31620d — falling through to queue: error: sorry, too many clients already
+    at /app/backend/node_modules/pg-pool/index.js:45:11
+    at async Object.queryRows (/app/backend/dist/modules/PostgresProvider.js:187:24)
+[33m[2026-07-16T12:48:51.184] [WARN] WaitingRoom - [39mauto-admit reserve failed for SIM-shellypro3em-2a4951ae — falling through to queue: error: sorry, too many clients already
+    at /app/backend/node_modules/pg-pool/index.js:45:11
+    at async Object.queryRows (/app/backend/dist/modules/PostgresProvider.js:187:24)
+[33m[2026-07-16T12:48:51.185] [WARN] WaitingRoom - [39mauto-admit reserve failed for SIM-shellypro3em-9738923a — falling through to queue: error: sorry, too many clients already
+    at /app/backend/node_modules/pg-pool/index.js:45:11
+    at async Object.queryRows (/app/backend/dist/modules/PostgresProvider.js:187:24)
+[33m[2026-07-16T12:48:51.185] [WARN] WaitingRoom - [39mauto-admit reserve failed for SIM-shellypro3em-23ca853d — falling through to queue: error: sorry, too many clients already
+    at /app/backend/node_modules/pg-pool/index.js:45:11
+    at async Object.queryRows (/app/backend/dist/modules/PostgresProvider.js:187:24)
+[33m[2026-07-16T12:48:51.185] [WARN] WaitingRoom - [39mauto-admit reserve failed for SIM-shellypro3em-ee7c1d1d — falling through to queue: error: sorry, too many clients already
+    at /app/backend/node_modules/pg-pool/index.js:45:11
+    at async Object.queryRows (/app/backend/dist/modules/PostgresProvider.js:187:24)
+[33m[2026-07-16T12:48:51.185] [WARN] WaitingRoom - [39mauto-admit reserve failed for SIM-shellypro3em-49bbeb82 — falling through to queue: error: sorry, too many clients already
+    at /app/backend/node_modules/pg-pool/index.js:45:11
+    at async Object.queryRows (/app/backend/dist/modules/PostgresProvider.js:187:24)
+[33m[2026-07-16T12:48:51.186] [WARN] WaitingRoom - [39mauto-admit reserve failed for SIM-shellypro3em-ffa8f920 — falling through to queue: error: sorry, too many clients already
+    at /app/backend/node_modules/pg-pool/index.js:45:11
+    at async Object.queryRows (/app/backend/dist/modules/PostgresProvider.js:187:24)
+[91m[2026-07-16T12:48:51.198] [ERROR] WaitingRoom - [39mFailed to check access control for SIM-shellypro3em-a9f549f8: error: sorry, too many clients already
+    at /app/backend/node_modules/pg-pool/index.js:45:11
+    at async device.fn_fetch (/app/backend/node_modules/expose-sql-methods/lib/postgres/index.js:139:45)
+    at async /app/backend/dist/modules/PostgresProvider.js:547:24
+    at async Object.accessControl (/app/backend/dist/modules/PostgresProvider.js:335:19)
+[91m[2026-07-16T12:48:51.199] [ERROR] WaitingRoom - [39mFailed to check access control for SIM-shellypro3em-168231a7: error: sorry, too many clients already
+    at /app/backend/node_modules/pg-pool/index.js:45:11
+    at async device.fn_fetch (/app/backend/node_modules/expose-sql-methods/lib/postgres/index.js:139:45)
+    at async /app/backend/dist/modules/PostgresProvider.js:547:24
+    at async Object.accessControl (/app/backend/dist/modules/PostgresProvider.js:335:19)
+[91m[2026-07-16T12:48:51.199] [ERROR] WaitingRoom - [39mFailed to check access control for SIM-shellypro3em-b87af8c4: error: sorry, too many clients already
+    at /app/backend/node_modules/pg-pool/index.js:45:11
+    at async device.fn_fetch (/app/backend/node_modules/expose-sql-methods/lib/postgres/index.js:139:45)
+    at async /app/backend/dist/modules/PostgresProvider.js:547:24
+    at async Object.accessControl (/app/backend/dist/modules/PostgresProvider.js:335:19)
+[91m[2026-07-16T12:48:51.199] [ERROR] WaitingRoom - [39mFailed to check access control for SIM-shellypro3em-5476eec4: error: sorry, too many clients already
+    at /app/backend/node_modules/pg-pool/index.js:45:11
+    at async device.fn_fetch (/app/backend/node_modules/expose-sql-methods/lib/postgres/index.js:139:45)
+    at async /app/backend/dist/modules/PostgresProvider.js:547:24
+    at async Object.accessControl (/app/backend/dist/modules/PostgresProvider.js:335:19)
+[33m[2026-07-16T12:48:51.199] [WARN] WaitingRoom - [39mauto-admit reserve failed for SIM-shellypro3em-4839f772 — falling through to queue: error: sorry, too many clients already
+    at /app/backend/node_modules/pg-pool/index.js:45:11
+    at async Object.queryRows (/app/backend/dist/modules/PostgresProvider.js:187:24)
+[33m[2026-07-16T12:48:51.199] [WARN] WaitingRoom - [39mauto-admit reserve failed for SIM-shellypro3em-8bb5cead — falling through to queue: error: sorry, too many clients already
+    at /app/backend/node_modules/pg-pool/index.js:45:11
+    at async Object.queryRows (/app/backend/dist/modules/PostgresProvider.js:187:24)
+[33m[2026-07-16T12:48:51.200] [WARN] WaitingRoom - [39mauto-admit reserve failed for SIM-shellypro3em-fd2478c2 — falling through to queue: error: sorry, too many clients already
+    at /app/backend/node_modules/pg-pool/index.js:45:11
+    at async Object.queryRows (/app/backend/dist/modules/PostgresProvider.js:187:24)
+[33m[2026-07-16T12:48:51.200] [WARN] WaitingRoom - [39mauto-admit reserve failed for SIM-shellypro3em-2cb402c0 — falling through to queue: error: sorry, too many clients already
+    at /app/backend/node_modules/pg-pool/index.js:45:11
+    at async Object.queryRows (/app/backend/dist/modules/PostgresProvider.js:187:24)
+[33m[2026-07-16T12:48:51.200] [WARN] WaitingRoom - [39mauto-admit reserve failed for SIM-shellypro3em-26ba459b — falling through to queue: error: sorry, too many clients already
+    at /app/backend/node_modules/pg-pool/index.js:45:11
+    at async Object.queryRows (/app/backend/dist/modules/PostgresProvider.js:187:24)
+[33m[2026-07-16T12:48:51.201] [WARN] WaitingRoom - [39mauto-admit reserve failed for SIM-shellypro3em-6b715506 — falling through to queue: error: sorry, too many clients already
+    at /app/backend/node_modules/pg-pool/index.js:45:11
+    at async Object.queryRows (/app/backend/dist/modules/PostgresProvider.js:187:24)
+[33m[2026-07-16T12:48:51.201] [WARN] WaitingRoom - [39mauto-admit reserve failed for SIM-shellypro3em-cf2fc498 — falling through to queue: error: sorry, too many clients already
+    at /app/backend/node_modules/pg-pool/index.js:45:11
+    at async Object.queryRows (/app/backend/dist/modules/PostgresProvider.js:187:24)
+[33m[2026-07-16T12:48:51.201] [WARN] WaitingRoom - [39mauto-admit reserve failed for SIM-shellypro3em-2224152f — falling through to queue: error: sorry, too many clients already
+    at /app/backend/node_modules/pg-pool/index.js:45:11
+    at async Object.queryRows (/app/backend/dist/modules/PostgresProvider.js:187:24)
+[33m[2026-07-16T12:48:51.227] [WARN] WaitingRoom - [39mauto-admit reserve failed for SIM-shellypro3em-6fac0c2a — falling through to queue: error: sorry, too many clients already
+    at /app/backend/node_modules/pg-pool/index.js:45:11
+    at async Object.queryRows (/app/backend/dist/modules/PostgresProvider.js:187:24)
+[33m[2026-07-16T12:48:51.227] [WARN] WaitingRoom - [39mauto-admit reserve failed for SIM-shellypro3em-c03ccfbe — falling through to queue: error: sorry, too many clients already
+    at /app/backend/node_modules/pg-pool/index.js:45:11
+    at async Object.queryRows (/app/backend/dist/modules/PostgresProvider.js:187:24)
+[33m[2026-07-16T12:48:51.227] [WARN] WaitingRoom - [39mauto-admit reserve failed for SIM-shellypro3em-19da6d0a — falling through to queue: error: sorry, too many clients already
+    at /app/backend/node_modules/pg-pool/index.js:45:11
+    at async Object.queryRows (/app/backend/dist/modules/PostgresProvider.js:187:24)
+[33m[2026-07-16T12:48:51.228] [WARN] WaitingRoom - [39mauto-admit reserve failed for SIM-shellypro3em-678a9cf0 — falling through to queue: error: sorry, too many clients already
+    at /app/backend/node_modules/pg-pool/index.js:45:11
+    at async Object.queryRows (/app/backend/dist/modules/PostgresProvider.js:187:24)
+[33m[2026-07-16T12:48:51.228] [WARN] WaitingRoom - [39mauto-admit reserve failed for SIM-shellypro3em-6e5c8fcd — falling through to queue: error: sorry, too many clients already
+    at /app/backend/node_modules/pg-pool/index.js:45:11
+    at async Object.queryRows (/app/backend/dist/modules/PostgresProvider.js:187:24)
+[33m[2026-07-16T12:48:51.228] [WARN] WaitingRoom - [39mauto-admit reserve failed for SIM-shellypro3em-281bb138 — falling through to queue: error: sorry, too many clients already
+    at /app/backend/node_modules/pg-pool/index.js:45:11
+    at async Object.queryRows (/app/backend/dist/modules/PostgresProvider.js:187:24)
+[33m[2026-07-16T12:48:51.228] [WARN] WaitingRoom - [39mauto-admit reserve failed for SIM-shellypro3em-a2033a2c — falling through to queue: error: sorry, too many clients already
+    at /app/backend/node_modules/pg-pool/index.js:45:11
+    at async Object.queryRows (/app/backend/dist/modules/PostgresProvider.js:187:24)
+[33m[2026-07-16T12:48:51.229] [WARN] WaitingRoom - [39mauto-admit reserve failed for SIM-shellypro3em-30a39347 — falling through to queue: error: sorry, too many clients already
+    at /app/backend/node_modules/pg-pool/index.js:45:11
+    at async Object.queryRows (/app/backend/dist/modules/PostgresProvider.js:187:24)
+[33m[2026-07-16T12:48:51.229] [WARN] WaitingRoom - [39mauto-admit reserve failed for SIM-shellypro3em-d6469691 — falling through to queue: error: sorry, too many clients already
+    at /app/backend/node_modules/pg-pool/index.js:45:11
+    at async Object.queryRows (/app/backend/dist/modules/PostgresProvider.js:187:24)
+[33m[2026-07-16T12:48:51.244] [WARN] WaitingRoom - [39mauto-admit reserve failed for SIM-shellypro3em-c84cd137 — falling through to queue: error: sorry, too many clients already
+    at /app/backend/node_modules/pg-pool/index.js:45:11
+    at async Object.queryRows (/app/backend/dist/modules/PostgresProvider.js:187:24)
+[33m[2026-07-16T12:48:51.245] [WARN] WaitingRoom - [39mauto-admit reserve failed for SIM-shellypro3em-f03440bb — falling through to queue: error: sorry, too many clients already
+    at /app/backend/node_modules/pg-pool/index.js:45:11
+    at async Object.queryRows (/app/backend/dist/modules/PostgresProvider.js:187:24)
+[33m[2026-07-16T12:48:51.246] [WARN] WaitingRoom - [39mauto-admit reserve failed for SIM-shellypro3em-0f5308a0 — falling through to queue: error: sorry, too many clients already
+    at /app/backend/node_modules/pg-pool/index.js:45:11
+    at async Object.queryRows (/app/backend/dist/modules/PostgresProvider.js:187:24)
+[33m[2026-07-16T12:48:51.246] [WARN] WaitingRoom - [39mauto-admit reserve failed for SIM-shellypro3em-0610401b — falling through to queue: error: sorry, too many clients already
+    at /app/backend/node_modules/pg-pool/index.js:45:11
+    at async Object.queryRows (/app/backend/dist/modules/PostgresProvider.js:187:24)
+[33m[2026-07-16T12:48:51.247] [WARN] WaitingRoom - [39mauto-admit reserve failed for SIM-shellypro3em-8a5e4bd3 — falling through to queue: error: sorry, too many clients already
+    at /app/backend/node_modules/pg-pool/index.js:45:11
+    at async Object.queryRows (/app/backend/dist/modules/PostgresProvider.js:187:24)
+[33m[2026-07-16T12:48:51.247] [WARN] WaitingRoom - [39mauto-admit reserve failed for SIM-shellypro3em-9e5821f5 — falling through to queue: error: sorry, too many clients already
+    at /app/backend/node_modules/pg-pool/index.js:45:11
+    at async Object.queryRows (/app/backend/dist/modules/PostgresProvider.js:187:24)
+[33m[2026-07-16T12:48:51.248] [WARN] WaitingRoom - [39mauto-admit reserve failed for SIM-shellypro3em-9cfc9cbd — falling through to queue: error: sorry, too many clients already
+    at /app/backend/node_modules/pg-pool/index.js:45:11
+    at async Object.queryRows (/app/backend/dist/modules/PostgresProvider.js:187:24)
+[33m[2026-07-16T12:48:51.249] [WARN] WaitingRoom - [39mauto-admit reserve failed for SIM-shellypro3em-2006f77e — falling through to queue: error: sorry, too many clients already
+    at /app/backend/node_modules/pg-pool/index.js:45:11
+    at async Object.queryRows (/app/backend/dist/modules/PostgresProvider.js:187:24)
+[33m[2026-07-16T12:48:51.293] [WARN] WaitingRoom - [39mauto-admit reserve failed for SIM-shellypro3em-7283f670 — falling through to queue: error: sorry, too many clients already
+    at /app/backend/node_modules/pg-pool/index.js:45:11
+    at async Object.queryRows (/app/backend/dist/modules/PostgresProvider.js:187:24)
+[33m[2026-07-16T12:48:51.394] [WARN] WaitingRoom - [39mauto-admit reserve failed for SIM-shellypro3em-19ea91e0 — falling through to queue: error: sorry, too many clients already
+    at /app/backend/node_modules/pg-pool/index.js:45:11
+    at async Object.queryRows (/app/backend/dist/modules/PostgresProvider.js:187:24)
+[33m[2026-07-16T12:48:51.395] [WARN] WaitingRoom - [39mauto-admit reserve failed for SIM-shellypro3em-14a8de69 — falling through to queue: error: sorry, too many clients already
+    at /app/backend/node_modules/pg-pool/index.js:45:11
+    at async Object.queryRows (/app/backend/dist/modules/PostgresProvider.js:187:24)
+[33m[2026-07-16T12:48:51.395] [WARN] WaitingRoom - [39mauto-admit reserve failed for SIM-shellypro3em-18456dc9 — falling through to queue: error: sorry, too many clients already
+    at /app/backend/node_modules/pg-pool/index.js:45:11
+    at async Object.queryRows (/app/backend/dist/modules/PostgresProvider.js:187:24)
+[33m[2026-07-16T12:48:51.396] [WARN] WaitingRoom - [39mauto-admit reserve failed for SIM-shellypro3em-64dfee79 — falling through to queue: error: sorry, too many clients already
+    at /app/backend/node_modules/pg-pool/index.js:45:11
+    at async Object.queryRows (/app/backend/dist/modules/PostgresProvider.js:187:24)
+[33m[2026-07-16T12:48:51.396] [WARN] WaitingRoom - [39mauto-admit reserve failed for SIM-shellypro3em-86fedaa8 — falling through to queue: error: sorry, too many clients already
+    at /app/backend/node_modules/pg-pool/index.js:45:11
+    at async Object.queryRows (/app/backend/dist/modules/PostgresProvider.js:187:24)
+[33m[2026-07-16T12:48:51.397] [WARN] WaitingRoom - [39mauto-admit reserve failed for SIM-shellypro3em-a2576200 — falling through to queue: error: sorry, too many clients already
+    at /app/backend/node_modules/pg-pool/index.js:45:11
+    at async Object.queryRows (/app/backend/dist/modules/PostgresProvider.js:187:24)
+[33m[2026-07-16T12:48:51.397] [WARN] WaitingRoom - [39mauto-admit reserve failed for SIM-shellypro3em-32d56880 — falling through to queue: error: sorry, too many clients already
+    at /app/backend/node_modules/pg-pool/index.js:45:11
+    at async Object.queryRows (/app/backend/dist/modules/PostgresProvider.js:187:24)
+[33m[2026-07-16T12:48:51.467] [WARN] WaitingRoom - [39mauto-admit reserve failed for SIM-shellypro3em-7617212e — falling through to queue: error: sorry, too many clients already
+    at /app/backend/node_modules/pg-pool/index.js:45:11
+    at async Object.queryRows (/app/backend/dist/modules/PostgresProvider.js:187:24)
+[33m[2026-07-16T12:48:51.489] [WARN] WaitingRoom - [39mauto-admit reserve failed for SIM-shellypro3em-4c076c51 — falling through to queue: error: sorry, too many clients already
+    at /app/backend/node_modules/pg-pool/index.js:45:11
+    at async Object.queryRows (/app/backend/dist/modules/PostgresProvider.js:187:24)
+[33m[2026-07-16T12:48:51.729] [WARN] WaitingRoom - [39mauto-admit reserve failed for SIM-shellypro3em-35319a02 — falling through to queue: error: sorry, too many clients already
+    at /app/backend/node_modules/pg-pool/index.js:45:11
+    at async Object.queryRows (/app/backend/dist/modules/PostgresProvider.js:187:24)
+[33m[2026-07-16T12:48:51.729] [WARN] WaitingRoom - [39mauto-admit reserve failed for SIM-shellypro3em-8512cab1 — falling through to queue: error: sorry, too many clients already
+    at /app/backend/node_modules/pg-pool/index.js:45:11
+    at async Object.queryRows (/app/backend/dist/modules/PostgresProvider.js:187:24)
+[33m[2026-07-16T12:48:51.729] [WARN] WaitingRoom - [39mauto-admit reserve failed for SIM-shellypro3em-3f20045d — falling through to queue: error: sorry, too many clients already
+    at /app/backend/node_modules/pg-pool/index.js:45:11
+    at async Object.queryRows (/app/backend/dist/modules/PostgresProvider.js:187:24)
+[33m[2026-07-16T12:48:51.730] [WARN] WaitingRoom - [39mauto-admit reserve failed for SIM-shellypro3em-6a71e9b9 — falling through to queue: error: sorry, too many clients already
+    at /app/backend/node_modules/pg-pool/index.js:45:11
+    at async Object.queryRows (/app/backend/dist/modules/PostgresProvider.js:187:24)
+[33m[2026-07-16T12:48:51.730] [WARN] WaitingRoom - [39mauto-admit reserve failed for SIM-shellypro3em-c177e245 — falling through to queue: error: sorry, too many clients already
+    at /app/backend/node_modules/pg-pool/index.js:45:11
+    at async Object.queryRows (/app/backend/dist/modules/PostgresProvider.js:187:24)
+[33m[2026-07-16T12:48:51.730] [WARN] WaitingRoom - [39mauto-admit reserve failed for SIM-shellypro3em-f582895a — falling through to queue: error: sorry, too many clients already
+    at /app/backend/node_modules/pg-pool/index.js:45:11
+    at async Object.queryRows (/app/backend/dist/modules/PostgresProvider.js:187:24)
+[33m[2026-07-16T12:48:51.740] [WARN] WaitingRoom - [39mauto-admit reserve failed for SIM-shellypro3em-d7b26eff — falling through to queue: error: sorry, too many clients already
+    at /app/backend/node_modules/pg-pool/index.js:45:11
+    at async Object.queryRows (/app/backend/dist/modules/PostgresProvider.js:187:24)
+[33m[2026-07-16T12:48:51.741] [WARN] WaitingRoom - [39mauto-admit reserve failed for SIM-shellypro3em-16ea78cf — falling through to queue: error: sorry, too many clients already
+    at /app/backend/node_modules/pg-pool/index.js:45:11
+    at async Object.queryRows (/app/backend/dist/modules/PostgresProvider.js:187:24)
+[33m[2026-07-16T12:48:51.750] [WARN] WaitingRoom - [39mauto-admit reserve failed for SIM-shellypro3em-c2e78c2f — falling through to queue: error: sorry, too many clients already
+    at /app/backend/node_modules/pg-pool/index.js:45:11
+    at async Object.queryRows (/app/backend/dist/modules/PostgresProvider.js:187:24)
+[33m[2026-07-16T12:48:51.751] [WARN] WaitingRoom - [39mauto-admit reserve failed for SIM-shellypro3em-896cedaf — falling through to queue: error: sorry, too many clients already
+    at /app/backend/node_modules/pg-pool/index.js:45:11
+    at async Object.queryRows (/app/backend/dist/modules/PostgresProvider.js:187:24)
+[33m[2026-07-16T12:48:51.751] [WARN] WaitingRoom - [39mauto-admit reserve failed for SIM-shellypro3em-f04d2121 — falling through to queue: error: sorry, too many clients already
+    at /app/backend/node_modules/pg-pool/index.js:45:11
+    at async Object.queryRows (/app/backend/dist/modules/PostgresProvider.js:187:24)
+[33m[2026-07-16T12:48:51.751] [WARN] WaitingRoom - [39mauto-admit reserve failed for SIM-shellypro3em-42be5007 — falling through to queue: error: sorry, too many clients already
+    at /app/backend/node_modules/pg-pool/index.js:45:11
+    at async Object.queryRows (/app/backend/dist/modules/PostgresProvider.js:187:24)
+[33m[2026-07-16T12:48:51.751] [WARN] WaitingRoom - [39mauto-admit reserve failed for SIM-shellypro3em-47dcf4cd — falling through to queue: error: sorry, too many clients already
+    at /app/backend/node_modules/pg-pool/index.js:45:11
+    at async Object.queryRows (/app/backend/dist/modules/PostgresProvider.js:187:24)

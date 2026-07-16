@@ -1,0 +1,8 @@
+active=5000
+admitted=5000
+waiting=0
+connecting=0
+tx=500/s
+fail=0
+drop=0
+timeout=0

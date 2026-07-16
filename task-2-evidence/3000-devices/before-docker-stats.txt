@@ -1,0 +1,9 @@
+CONTAINER ID   NAME                            CPU %     MEM USAGE / LIMIT     MEM %     NET I/O           BLOCK I/O         PIDS
+87a30350f2d7   fleet-public-zitadel-backup-1   0.00%     1.469MiB / 15.24GiB   0.01%     3.79MB / 85.6kB   1.04MB / 217kB    2
+3862dbca3114   fleet-public-fleet-manager-1    1.56%     413.6MiB / 15.24GiB   2.65%     462MB / 560MB     102MB / 111kB     14
+c99fa0fea6d0   fleet-public-traefik-1          2.50%     86.93MiB / 15.24GiB   0.56%     17.4MB / 17.5MB   66.5MB / 0B       24
+1f147a2db3c0   fleet-public-zitadel-login-1    0.67%     106.3MiB / 15.24GiB   0.68%     106kB / 515kB     33.5MB / 0B       11
+a3714cc586ce   fm-zitadel-api-1                0.77%     106.1MiB / 15.24GiB   0.68%     57.4MB / 3.54MB   18.3MB / 0B       26
+8c475fcaa2ac   fleet-public-zitadel-db-1       0.31%     74.73MiB / 15.24GiB   0.48%     3.38MB / 60.9MB   29.4MB / 10.6MB   13
+9d8680e509d1   fleet-public-fleet-db-1         1.50%     366.7MiB / 15.24GiB   2.35%     366MB / 221MB     151MB / 4.17GB    19
+cf1ce829d9fb   fm-redis                        0.71%     168.5MiB / 15.24GiB   1.08%     171MB / 170MB     75.6MB / 265MB    7
