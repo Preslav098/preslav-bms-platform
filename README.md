@@ -117,3 +117,10 @@ The short audit requested by the assignment is in [`TASK2_AUDIT.md`](TASK2_AUDIT
 - Validate accessibility and mobile/tablet workflows with facility operators.
 - Add automated component and Host SDK contract tests.
 - Complete the sustained 5,000-device EM write-path benchmark described in the audit.
+
+
+## Device lifecycle management
+
+- Waiting-room onboarding directly inside Preslav BMS
+- Approve or reject newly connected Shelly devices
+- Remove managed devices with confirmation and reconnect guidance

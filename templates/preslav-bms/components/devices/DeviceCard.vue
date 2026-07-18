@@ -121,6 +121,14 @@
 
         <footer class="device-card__footer">
             <button
+                class="device-card__remove"
+                type="button"
+                @click="$emit('remove')"
+            >
+                Remove
+            </button>
+
+            <button
                 class="device-card__details"
                 type="button"
                 @click="$emit('select')"
@@ -152,6 +160,7 @@ const props = defineProps<{
 
 defineEmits<{
     select: [];
+    remove: [];
 }>();
 
 const normalizedDevice = computed(() => {

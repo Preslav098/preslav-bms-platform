@@ -152,3 +152,25 @@
         width: 100%;
     }
 }
+.device-toolbar__button--manage {
+    border-color: rgb(34 197 94 / 35%);
+    background: rgb(20 83 45 / 36%);
+    color: #bbf7d0;
+}
+
+.device-toolbar__button--manage:hover {
+    border-color: rgb(34 197 94 / 65%);
+    background: rgb(21 128 61 / 48%);
+}
+
+.device-toolbar__button--manage b {
+    display: grid;
+    min-width: 20px;
+    height: 20px;
+    padding: 0 5px;
+    place-items: center;
+    border-radius: 999px;
+    background: #22c55e;
+    color: #052e16;
+    font-size: 10px;
+}

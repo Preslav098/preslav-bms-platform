@@ -18,8 +18,14 @@
         </div>
 
         <div v-else class="device-list__grid">
-            <DeviceCard v-for="device in devices" :key="String(device.id)" :device="device"
-                :host-device="findHostDevice(device)" @select="$emit('select-device', device)" />
+            <DeviceCard
+                v-for="device in devices"
+                :key="String(device.id)"
+                :device="device"
+                :host-device="findHostDevice(device)"
+                @select="$emit('select-device', device)"
+                @remove="$emit('remove-device', device)"
+            />
         </div>
     </section>
 </template>
@@ -40,6 +46,7 @@ const props = withDefaults(defineProps<{
 
 defineEmits<{
     'select-device': [device: Device];
+    'remove-device': [device: Device];
 }>();
 
 const onlineCount = computed(() => {

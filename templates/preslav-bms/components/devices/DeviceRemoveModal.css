@@ -1,0 +1,44 @@
+.device-remove {
+    position: fixed;
+    z-index: 12500;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    padding: 24px;
+    background: rgb(2 8 23 / 82%);
+}
+.device-remove section {
+    width: min(500px, 100%);
+    padding: 26px;
+    border: 1px solid rgb(244 63 94 / 36%);
+    border-radius: 20px;
+    background: linear-gradient(145deg, #201827, #0d1728);
+    color: #e2e8f0;
+    box-shadow: 0 30px 90px rgb(0 0 0 / 60%);
+}
+.device-remove__icon {
+    display: grid;
+    width: 48px;
+    height: 48px;
+    margin-bottom: 16px;
+    place-items: center;
+    border: 1px solid rgb(244 63 94 / 40%);
+    border-radius: 14px;
+    background: rgb(127 29 29 / 40%);
+    color: #fda4af;
+    font-size: 22px;
+    font-weight: 900;
+}
+.device-remove p { margin: 0 0 6px; color: #fb7185; font-size: 10px; font-weight: 850; letter-spacing: .1em; text-transform: uppercase; }
+.device-remove h2 { margin: 0; color: #f8fafc; font-size: 22px; }
+.device-remove__warning { margin-top: 15px; padding: 13px; border: 1px solid rgb(249 115 22 / 25%); border-radius: 11px; background: rgb(124 45 18 / 22%); color: #fdba74; font-size: 12px; line-height: 1.55; }
+.device-remove dl { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 9px; margin: 16px 0 0; }
+.device-remove dl > div { min-width: 0; padding: 11px; border: 1px solid #2b3a52; border-radius: 10px; background: #0f172a; }
+.device-remove dt { color: #64748b; font-size: 9px; font-weight: 800; text-transform: uppercase; }
+.device-remove dd { margin: 5px 0 0; overflow: hidden; color: #cbd5e1; font-size: 12px; text-overflow: ellipsis; white-space: nowrap; }
+.device-remove footer { display: flex; justify-content: flex-end; gap: 10px; margin-top: 20px; }
+.device-remove button { min-height: 39px; padding: 0 14px; border: 1px solid #334155; border-radius: 10px; background: #172033; color: #cbd5e1; cursor: pointer; font: inherit; font-size: 12px; font-weight: 800; }
+.device-remove__confirm { border-color: rgb(244 63 94 / 42%) !important; background: linear-gradient(135deg, #be123c, #9f1239) !important; color: #fff !important; }
+.device-remove button:disabled { cursor: wait; opacity: .55; }
+.device-remove-enter-active, .device-remove-leave-active { transition: opacity .16s ease; }
+.device-remove-enter-from, .device-remove-leave-to { opacity: 0; }
