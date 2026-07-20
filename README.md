@@ -118,9 +118,34 @@ The short audit requested by the assignment is in [`TASK2_AUDIT.md`](TASK2_AUDIT
 - Add automated component and Host SDK contract tests.
 - Complete the sustained 5,000-device EM write-path benchmark described in the audit.
 
+## Automatic device-ingress URL detection
 
-## Device lifecycle management
+The deployment scripts now configure Fleet Manager device enrollment automatically before the container is created.
 
-- Waiting-room onboarding directly inside Preslav BMS
-- Approve or reject newly connected Shelly devices
-- Remove managed devices with confirmation and reconnect guidance
+They:
+
+- detect the host IPv4 address from the system default route;
+- set `FM_DEVICE_INGRESS_PUBLIC_WS_BASE_URL` to `wss://<detected-host>/shelly`;
+- generate and persist `FM_DEVICE_INGRESS_TOKEN_PEPPER` when it does not exist;
+- remove duplicate definitions from Fleet Manager `.env` files;
+- export both values so Docker Compose passes them into the running container.
+
+Run the normal deployment command:
+
+```bash
+cd /var/www/preslav-bms-platform
+./deploy-preslav-bms.sh
+```
+
+For a machine with multiple network interfaces, VPNs, or a DNS name, override only the host while keeping the rest automatic:
+
+```bash
+FM_PUBLIC_HOST=fleet.example.local ./deploy-preslav-bms.sh
+```
+
+You may verify the resulting container configuration with:
+
+```bash
+docker exec fleet-public-fleet-manager-1 printenv | \
+  grep -E 'FM_DEVICE_INGRESS_TOKEN_PEPPER|FM_DEVICE_INGRESS_PUBLIC_WS_BASE_URL'
+```

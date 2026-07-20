@@ -9,6 +9,8 @@ echo "=========================================="
 BMS_PATH="/var/www/preslav-bms-platform"
 FLEET_PATH="/var/www/fleet-management"
 
+FLEET_PROJECT_DIR="$FLEET_PATH" source "$BMS_PATH/scripts/configure-device-ingress.sh"
+
 cd "$FLEET_PATH"
 
 echo ""

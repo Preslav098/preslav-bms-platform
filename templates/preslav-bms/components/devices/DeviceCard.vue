@@ -1,15 +1,8 @@
 <template>
-    <article
-        class="device-card"
-        :class="`device-card--${resolvedStatus}`"
-    >
+    <article class="device-card" :class="`device-card--${resolvedStatus}`">
         <header class="device-card__header">
             <div class="device-card__identity">
-                <span
-                    class="device-card__icon"
-                    :class="deviceIconClass"
-                    aria-hidden="true"
-                >
+                <span class="device-card__icon" :class="deviceIconClass" aria-hidden="true">
                     {{ deviceIcon }}
                 </span>
 
@@ -120,21 +113,12 @@
         </section>
 
         <footer class="device-card__footer">
-            <button
-                class="device-card__remove"
-                type="button"
-                @click="$emit('remove')"
-            >
-                Remove
-            </button>
-
-            <button
-                class="device-card__details"
-                type="button"
-                @click="$emit('select')"
-            >
+            <button class="device-card__details" type="button" @click="$emit('select')">
                 View details
                 <span aria-hidden="true">→</span>
+            </button>
+            <button class="device-card__remove" type="button" @click="$emit('remove')">
+                Remove
             </button>
         </footer>
     </article>
@@ -177,15 +161,15 @@ const isDoorDevice = computed(() => {
     return props.hostDevice
         ? isBluDoorDevice(props.hostDevice)
         : normalizedDevice.value.includes('door') ||
-          normalizedDevice.value.includes('window');
+        normalizedDevice.value.includes('window');
 });
 
 const isClimateDevice = computed(() => {
     return props.hostDevice
         ? isBluHTDevice(props.hostDevice)
         : normalizedDevice.value.includes('h&t') ||
-          normalizedDevice.value.includes('temperature') ||
-          normalizedDevice.value.includes('humidity');
+        normalizedDevice.value.includes('temperature') ||
+        normalizedDevice.value.includes('humidity');
 });
 
 const isPowerDevice = computed(() => {

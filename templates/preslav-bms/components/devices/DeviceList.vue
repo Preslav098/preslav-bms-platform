@@ -18,14 +18,9 @@
         </div>
 
         <div v-else class="device-list__grid">
-            <DeviceCard
-                v-for="device in devices"
-                :key="String(device.id)"
-                :device="device"
-                :host-device="findHostDevice(device)"
-                @select="$emit('select-device', device)"
-                @remove="$emit('remove-device', device)"
-            />
+            <DeviceCard v-for="device in devices" :key="String(device.id)" :device="device"
+                :host-device="findHostDevice(device)" @select="$emit('select-device', device)"
+                @remove="$emit('remove-device', device)" />
         </div>
     </section>
 </template>

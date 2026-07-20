@@ -151,23 +151,3 @@
     min-width: 0;
     max-width: 100%;
 }
-
-.device-page__operation-message {
-    padding: 12px 14px;
-    border: 1px solid;
-    border-radius: 11px;
-    font-size: 12px;
-    font-weight: 750;
-}
-
-.device-page__operation-message--success {
-    border-color: rgb(34 197 94 / 32%);
-    background: rgb(20 83 45 / 35%);
-    color: #bbf7d0;
-}
-
-.device-page__operation-message--error {
-    border-color: rgb(244 63 94 / 35%);
-    background: rgb(127 29 29 / 32%);
-    color: #fda4af;
-}

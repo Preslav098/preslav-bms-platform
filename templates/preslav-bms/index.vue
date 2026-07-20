@@ -1,13 +1,6 @@
 <template>
-    <AppLayout
-        :active-page="activePage"
-        :title="pageTitle"
-        :user-name="currentUserName"
-        @navigate="handleNavigation"
-        @search="handleSearch"
-        @open-profile="handleOpenProfile"
-        @logout="handleLogout"
-    >
+    <AppLayout :active-page="activePage" :title="pageTitle" :user-name="currentUserName" @navigate="handleNavigation"
+        @search="handleSearch" @open-profile="handleOpenProfile" @logout="handleLogout">
         <BuildingOverview v-if="activePage === 'overview'" :devices="deviceList" :host-devices="hostDevices"
             :floors="floorList" :refreshing="refreshing" @refresh="refreshData" @navigate="handleNavigation"
             @select-device="openDeviceDetails" @select-floor="handleBuildingFloorSelection" />
@@ -17,15 +10,9 @@
 
         <FloorPage v-else-if="activePage === 'floors'" :floors="floorList" @select-device="openDeviceDetails" />
 
-        <DevicePage
-            v-else-if="activePage === 'devices'"
-            :devices="deviceList"
-            :host-devices="hostDevices"
-            :refreshing="refreshing"
-            @refresh="refreshData"
-            @select-device="openDeviceDetails"
-        />
-
+        <DevicePage v-else-if="activePage === 'devices'" :devices="deviceList" :host-devices="hostDevices"
+            :refreshing="refreshing" @refresh="refreshData" @select-device="openDeviceDetails"
+            @remove-device="openRemoveDeviceModal" @add-device="enrollmentOpen = true" />
         <EnergyPage v-else-if="activePage === 'energy'" :devices="deviceList" :refreshing="refreshing"
             @refresh="refreshData" />
 
@@ -34,30 +21,28 @@
 
         <DoorPage v-else-if="activePage === 'events'" :devices="hostDevices" :refreshing="refreshing"
             @refresh="refreshData" />
-        <DevicePopup
-            :device="selectedDevice"
-            :host-device="selectedHostDevice"
-            @close="closeDeviceDetails"
-            @updated="refreshData"
-        />
+        <DevicePopup :device="selectedDevice" :host-device="selectedHostDevice" @close="closeDeviceDetails"
+            @updated="refreshData" />
 
-        <ProfileModal
-            :open="profileOpen"
-            :user-name="currentUserName"
-            :email="currentUserEmail"
-            @close="profileOpen = false"
-        />
+        <DeviceEnrollmentModal :open="enrollmentOpen" :devices="hostDevices" @close="enrollmentOpen = false"
+            @added="handleDeviceAdded" />
+        <DeviceRemoveModal :device="devicePendingRemoval" :removing="removingDevice" @close="closeRemoveDeviceModal"
+            @confirm="confirmRemoveDevice" />
+
+        <ProfileModal :open="profileOpen" :user-name="currentUserName" :email="currentUserEmail"
+            @close="profileOpen = false" />
     </AppLayout>
 </template>
 
 <script setup lang="ts">
 import {
+    bluetoothDevices,
+    devices as deviceApi,
     useCurrentUser,
     useCustomization,
     useDevices,
     useGroups
 } from '@host/index';
-
 import {
     computed,
     onMounted,
@@ -65,6 +50,7 @@ import {
     watch,
     watchEffect
 } from 'vue';
+import DeviceRemoveModal from './components/devices/DeviceRemoveModal.vue';
 
 import AppLayout from './components/layout/AppLayout.vue';
 import BuildingOverview from './components/overview/BuildingOverview.vue';
@@ -75,6 +61,7 @@ import EnergyPage from './components/energy/EnergyPage.vue';
 import ClimatePage from './components/climate/ClimatePage.vue';
 import DoorPage from './components/door/DoorPage.vue';
 import DevicePopup from './components/devices/DevicePopup.vue';
+import DeviceEnrollmentModal from './components/devices/DeviceEnrollmentModal.vue';
 import ProfileModal from './components/profile/ProfileModal.vue';
 
 import type { Device } from './models/Device';
@@ -105,6 +92,9 @@ const activePage = ref<PageId>(readStoredActivePage());
 const refreshing = ref(false);
 const selectedDevice = ref<Device | null>(null);
 const profileOpen = ref(false);
+const enrollmentOpen = ref(false);
+const devicePendingRemoval = ref<Device | null>(null);
+const removingDevice = ref(false);
 
 const hostDevices = computed(() => {
     return devices.data.value;
@@ -209,6 +199,122 @@ watchEffect(() => {
             : null
     );
 });
+function openRemoveDeviceModal(device: Device): void {
+    devicePendingRemoval.value = device;
+}
+
+function closeRemoveDeviceModal(): void {
+    if (removingDevice.value) {
+        return;
+    }
+
+    devicePendingRemoval.value = null;
+}
+
+async function confirmRemoveDevice(): Promise<void> {
+    const device = devicePendingRemoval.value;
+
+    if (!device || removingDevice.value) {
+        return;
+    }
+
+    removingDevice.value = true;
+
+    try {
+        const externalId = String(device.id);
+
+        const isBluetooth =
+            externalId.startsWith('blu_') ||
+            device.source === 'bluetooth' ||
+            device.raw?.source === 'bluetooth';
+
+        if (isBluetooth) {
+            await bluetoothDevices.delete({
+                externalId: String(device.id),
+                unpairFromGateway: true
+            });
+
+            const removedId = String(device.id);
+
+            devices.data.value = devices.data.value.filter((hostDevice) => {
+                const hostId = String(
+                    hostDevice.id ??
+                    hostDevice.shellyID ??
+                    hostDevice.externalId ??
+                    ''
+                );
+
+                return hostId !== removedId;
+            });
+
+            devicePendingRemoval.value = null;
+
+            await devices.refresh();
+            console.info(
+                devices.data.value,
+            );
+        } else {
+            await deviceApi.delete(externalId);
+        }
+
+        if (
+            selectedDevice.value &&
+            String(selectedDevice.value.id) === externalId
+        ) {
+            closeDeviceDetails();
+        }
+
+        devicePendingRemoval.value = null;
+
+        await devices.refresh();
+    } catch (error) {
+        console.error('Could not remove device:', error);
+
+        window.alert(
+            `Could not remove device: ${getErrorMessage(error)}`
+        );
+    } finally {
+        removingDevice.value = false;
+    }
+}
+
+function getErrorMessage(error: unknown): string {
+    if (error instanceof Error) {
+        return error.message;
+    }
+
+    if (typeof error === 'string') {
+        return error;
+    }
+
+    if (
+        error &&
+        typeof error === 'object'
+    ) {
+        const record = error as Record<string, unknown>;
+
+        for (const key of [
+            'message',
+            'error',
+            'detail',
+            'reason'
+        ]) {
+            const value = record[key];
+
+            if (typeof value === 'string') {
+                return value;
+            }
+        }
+
+        try {
+            return JSON.stringify(error);
+        } catch {
+            return 'Unknown Fleet Manager error';
+        }
+    }
+
+    return 'Unknown Fleet Manager error';
+}
 
 
 function readStoredActivePage(): PageId {
@@ -334,6 +440,10 @@ function handleBuildingFloorSelection(
     activePage.value = 'floors';
 }
 
+
+async function handleDeviceAdded(): Promise<void> {
+    await refreshData();
+}
 
 function handleOpenProfile(): void {
     profileOpen.value = true;

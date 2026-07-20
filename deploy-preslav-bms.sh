@@ -42,6 +42,9 @@ docker image inspect "$SOURCE_IMAGE" >/dev/null 2>&1 || fail "Build completed, b
 log "Tagging $SOURCE_IMAGE as $DEPLOY_IMAGE"
 docker tag "$SOURCE_IMAGE" "$DEPLOY_IMAGE"
 
+log "Configuring device ingress"
+FLEET_PROJECT_DIR="$FLEET_PROJECT_DIR" source "$BMS_PROJECT_DIR/scripts/configure-device-ingress.sh"
+
 log "Stopping current Fleet Manager deployment"
 cd "$FLEET_PROJECT_DIR"
 export DOCKER_HUB_IMAGE="$DEPLOY_IMAGE_NAME"

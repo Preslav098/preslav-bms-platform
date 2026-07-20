@@ -8,16 +8,9 @@
         </div>
 
         <div class="device-toolbar__actions">
-            <button
-                class="device-toolbar__button device-toolbar__button--manage"
-                type="button"
-                @click="$emit('manage')"
-            >
-                <span aria-hidden="true">＋</span>
-                Add devices
-                <b v-if="pendingCount > 0">{{ pendingCount }}</b>
+            <button class="device-toolbar__button device-toolbar__button--add" type="button" @click="$emit('add-device')">
+                <span aria-hidden="true">＋</span> Add device
             </button>
-
             <label class="device-toolbar__sort">
                 <span>Sort by</span>
 
@@ -70,14 +63,13 @@ defineProps<{
     visibleCount: number;
     sort: DeviceSort;
     refreshing: boolean;
-    pendingCount?: number;
 }>();
 
 const emit = defineEmits<{
     'update:sort': [value: DeviceSort];
     export: [];
     refresh: [];
-    manage: [];
+    'add-device': [];
 }>();
 
 function handleSortChange(event: Event): void {
